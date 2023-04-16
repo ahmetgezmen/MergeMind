@@ -1,5 +1,6 @@
 import 'package:chatgptapp/constant%20/constant.dart';
 import 'package:chatgptapp/middleware/splash_screen.dart';
+import 'package:chatgptapp/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 
@@ -8,9 +9,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: BaseConstant.appTitle,
-      home: SplashScreen(),
+      themeMode: AppTheme.themeMode,
+      darkTheme: AppTheme.theme,
+      home: const SplashScreen(),
     );
   }
 }
