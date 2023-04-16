@@ -1,5 +1,5 @@
 import 'package:chatgptapp/constant%20/constant.dart';
-import 'package:chatgptapp/feature/models/services_models/choice_model.dart';
+import 'package:chatgptapp/feature/models/services_models/choices_model.dart';
 import 'package:chatgptapp/feature/provider/chat_provider.dart';
 import 'package:chatgptapp/feature/widgets/app_bar.dart';
 import 'package:chatgptapp/feature/widgets/custom_card_widget.dart';
@@ -24,17 +24,17 @@ class ChatPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List<Choice> choices = ref.watch(chatProvider).chats[title]!;
+    final Choices choices = ref.watch(chatProvider).chats[title]!;
     return SafeArea(
       child: Scaffold(
         appBar: appBar(title: title),
         body: ListView.builder(
-          itemCount: choices.length,
+          itemCount: choices.list.length,
           itemBuilder: (context, index) {
-            bool isAssistant = choices[index].message.role != BaseConstant.user;
+            bool isAssistant = choices.list[index].message.role != BaseConstant.user;
             return CustomCardWidget(
               isAssistant: isAssistant,
-              content: choices[index].message.content,
+              content: choices.list[index].message.content,
             );
           },
         ),
