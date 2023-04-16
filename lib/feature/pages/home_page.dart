@@ -1,4 +1,5 @@
 import 'package:chatgptapp/constant%20/constant.dart';
+import 'package:chatgptapp/feature/pages/chat_page.dart';
 import 'package:chatgptapp/feature/widgets/app_bar.dart';
 import 'package:chatgptapp/feature/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        drawer: const Drawer(),
+        drawer:  Drawer(
+          child: Center(
+            child: ElevatedButton(onPressed: () {
+              ChatPage.go(context, "session");
+            }, child: Text("go")),
+          ),
+        ),
         appBar: appBar(title: HomePageConstant.title),
         body: const Center(
           child: Text(HomePageConstant.askAnything),
