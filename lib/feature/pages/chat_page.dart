@@ -3,6 +3,7 @@ import 'package:chatgptapp/feature/models/services_models/choices_model.dart';
 import 'package:chatgptapp/feature/provider/chat_provider.dart';
 import 'package:chatgptapp/feature/widgets/app_bar.dart';
 import 'package:chatgptapp/feature/widgets/custom_card_widget.dart';
+import 'package:chatgptapp/feature/widgets/custom_drawer.dart';
 import 'package:chatgptapp/feature/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,6 +28,7 @@ class ChatPage extends ConsumerWidget {
     final Choices choices = ref.watch(chatProvider).chats[title]!;
     return SafeArea(
       child: Scaffold(
+        drawer: const CustomDrawer(),
         appBar: appBar(title: title),
         body: ListView.builder(
           itemCount: choices.list.length,
