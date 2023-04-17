@@ -20,8 +20,11 @@ Choice _$ChoiceFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Choice {
+  @HiveField(0)
   int get index => throw _privateConstructorUsedError;
+  @HiveField(1)
   Message get message => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get finish_reason => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +37,10 @@ abstract class $ChoiceCopyWith<$Res> {
   factory $ChoiceCopyWith(Choice value, $Res Function(Choice) then) =
       _$ChoiceCopyWithImpl<$Res, Choice>;
   @useResult
-  $Res call({int index, Message message, String finish_reason});
+  $Res call(
+      {@HiveField(0) int index,
+      @HiveField(1) Message message,
+      @HiveField(2) String finish_reason});
 
   $MessageCopyWith<$Res> get message;
 }
@@ -87,7 +93,10 @@ abstract class _$$_ChoiceCopyWith<$Res> implements $ChoiceCopyWith<$Res> {
       __$$_ChoiceCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int index, Message message, String finish_reason});
+  $Res call(
+      {@HiveField(0) int index,
+      @HiveField(1) Message message,
+      @HiveField(2) String finish_reason});
 
   @override
   $MessageCopyWith<$Res> get message;
@@ -125,22 +134,25 @@ class __$$_ChoiceCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
+@HiveType(typeId: 2)
 class _$_Choice implements _Choice {
   const _$_Choice(
-      {required this.index,
-      required this.message,
-      required this.finish_reason});
+      {@HiveField(0) required this.index,
+      @HiveField(1) required this.message,
+      @HiveField(2) required this.finish_reason});
 
   factory _$_Choice.fromJson(Map<String, dynamic> json) =>
       _$$_ChoiceFromJson(json);
 
   @override
+  @HiveField(0)
   final int index;
   @override
+  @HiveField(1)
   final Message message;
   @override
+  @HiveField(2)
   final String finish_reason;
 
   @override
@@ -179,17 +191,20 @@ class _$_Choice implements _Choice {
 
 abstract class _Choice implements Choice {
   const factory _Choice(
-      {required final int index,
-      required final Message message,
-      required final String finish_reason}) = _$_Choice;
+      {@HiveField(0) required final int index,
+      @HiveField(1) required final Message message,
+      @HiveField(2) required final String finish_reason}) = _$_Choice;
 
   factory _Choice.fromJson(Map<String, dynamic> json) = _$_Choice.fromJson;
 
   @override
+  @HiveField(0)
   int get index;
   @override
+  @HiveField(1)
   Message get message;
   @override
+  @HiveField(2)
   String get finish_reason;
   @override
   @JsonKey(ignore: true)

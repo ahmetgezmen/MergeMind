@@ -16,6 +16,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
   appInitializing() async {
     // todo : app initializing
+    await Future.delayed(Duration.zero);
     await ref.read(chatProvider).fetch();
     setState(() {
       isInitialized = true;

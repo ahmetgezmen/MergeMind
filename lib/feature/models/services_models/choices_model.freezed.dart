@@ -20,6 +20,7 @@ Choices _$ChoicesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Choices {
+  @HiveField(0)
   List<Choice> get list => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -32,7 +33,7 @@ abstract class $ChoicesCopyWith<$Res> {
   factory $ChoicesCopyWith(Choices value, $Res Function(Choices) then) =
       _$ChoicesCopyWithImpl<$Res, Choices>;
   @useResult
-  $Res call({List<Choice> list});
+  $Res call({@HiveField(0) List<Choice> list});
 }
 
 /// @nodoc
@@ -66,7 +67,7 @@ abstract class _$$_ChoicesCopyWith<$Res> implements $ChoicesCopyWith<$Res> {
       __$$_ChoicesCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Choice> list});
+  $Res call({@HiveField(0) List<Choice> list});
 }
 
 /// @nodoc
@@ -92,14 +93,17 @@ class __$$_ChoicesCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: 3)
 class _$_Choices with DiagnosticableTreeMixin implements _Choices {
-  const _$_Choices({required final List<Choice> list}) : _list = list;
+  const _$_Choices({@HiveField(0) required final List<Choice> list})
+      : _list = list;
 
   factory _$_Choices.fromJson(Map<String, dynamic> json) =>
       _$$_ChoicesFromJson(json);
 
   final List<Choice> _list;
   @override
+  @HiveField(0)
   List<Choice> get list {
     if (_list is EqualUnmodifiableListView) return _list;
     // ignore: implicit_dynamic_type
@@ -147,11 +151,13 @@ class _$_Choices with DiagnosticableTreeMixin implements _Choices {
 }
 
 abstract class _Choices implements Choices {
-  const factory _Choices({required final List<Choice> list}) = _$_Choices;
+  const factory _Choices({@HiveField(0) required final List<Choice> list}) =
+      _$_Choices;
 
   factory _Choices.fromJson(Map<String, dynamic> json) = _$_Choices.fromJson;
 
   @override
+  @HiveField(0)
   List<Choice> get list;
   @override
   @JsonKey(ignore: true)

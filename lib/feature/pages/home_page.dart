@@ -11,7 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 
 class HomePage extends ConsumerWidget {
-  static go(BuildContext context) {
+  static void go(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const HomePage(),
@@ -27,13 +27,8 @@ class HomePage extends ConsumerWidget {
       child: Scaffold(
         drawer: const CustomDrawer(),
         appBar: appBar(title: HomePageConstant.title),
-        body:  Center(
-          child: ElevatedButton(
-              onPressed: () {
-
-
-
-              }, child: Text(HomePageConstant.askAnything)),
+        body:  const Center(
+          child: Text(HomePageConstant.askAnything),
         ),
         bottomSheet: CustomTextFormField(
           onPressed: (value) async {
@@ -42,7 +37,9 @@ class HomePage extends ConsumerWidget {
                 );
 
             if (result != false) {
-              ChatPage.go(context, result.toString());
+              if(context.mounted){
+                ChatPage.go(context, result.toString());
+              }
             }
           },
           formKey: GlobalKey<FormState>(),

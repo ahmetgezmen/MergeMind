@@ -3,18 +3,18 @@ import 'dart:io';
 import 'package:chatgptapp/constant%20/constant.dart';
 import 'package:chatgptapp/feature/models/services_models/choice_model.dart';
 import 'package:chatgptapp/feature/models/services_models/choices_model.dart';
+import 'package:chatgptapp/feature/models/services_models/message_model.dart';
 import 'package:chatgptapp/feature/models/services_models/request_data_model.dart';
 import 'package:chatgptapp/feature/models/services_models/response_model.dart';
 import 'package:chatgptapp/feature/services/network_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../models/services_models/message_model.dart';
 
 class ChatsViewModel extends ChangeNotifier {
   final String apiKeys;
-  Map<dynamic, Choices> _chats = {};
+  final Map<dynamic, Choices> _chats = {};
   Map<dynamic, Choices> get chats => _chats;
-  String? openingChat = null;
+  String? openingChat;
   late NetworkManager networkManager;
 
 

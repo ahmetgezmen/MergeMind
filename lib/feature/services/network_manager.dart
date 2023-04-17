@@ -1,8 +1,7 @@
-import 'package:chatgptapp/constant%20/constant.dart';
 import 'package:chatgptapp/feature/models/services_models/request_data_model.dart';
 import 'package:chatgptapp/feature/models/services_models/response_model.dart';
 import 'package:chatgptapp/feature/services/i_network_manager.dart';
-import 'package:dio/src/response.dart';
+import 'package:dio/dio.dart';
 
 class NetworkManager extends INetworkManager {
   NetworkManager(this.apiKey) {

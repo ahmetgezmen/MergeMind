@@ -20,7 +20,9 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Message {
+  @HiveField(0)
   String get content => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get role => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,7 +35,7 @@ abstract class $MessageCopyWith<$Res> {
   factory $MessageCopyWith(Message value, $Res Function(Message) then) =
       _$MessageCopyWithImpl<$Res, Message>;
   @useResult
-  $Res call({String content, String role});
+  $Res call({@HiveField(0) String content, @HiveField(1) String role});
 }
 
 /// @nodoc
@@ -72,7 +74,7 @@ abstract class _$$_MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
       __$$_MessageCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String content, String role});
+  $Res call({@HiveField(0) String content, @HiveField(1) String role});
 }
 
 /// @nodoc
@@ -103,15 +105,19 @@ class __$$_MessageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: 0)
 class _$_Message with DiagnosticableTreeMixin implements _Message {
-  const _$_Message({required this.content, required this.role});
+  const _$_Message(
+      {@HiveField(0) required this.content, @HiveField(1) required this.role});
 
   factory _$_Message.fromJson(Map<String, dynamic> json) =>
       _$$_MessageFromJson(json);
 
   @override
+  @HiveField(0)
   final String content;
   @override
+  @HiveField(1)
   final String role;
 
   @override
@@ -157,13 +163,16 @@ class _$_Message with DiagnosticableTreeMixin implements _Message {
 
 abstract class _Message implements Message {
   const factory _Message(
-      {required final String content, required final String role}) = _$_Message;
+      {@HiveField(0) required final String content,
+      @HiveField(1) required final String role}) = _$_Message;
 
   factory _Message.fromJson(Map<String, dynamic> json) = _$_Message.fromJson;
 
   @override
+  @HiveField(0)
   String get content;
   @override
+  @HiveField(1)
   String get role;
   @override
   @JsonKey(ignore: true)
