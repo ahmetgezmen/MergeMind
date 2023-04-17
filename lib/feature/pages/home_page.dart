@@ -32,7 +32,7 @@ class HomePage extends ConsumerWidget {
         ),
         bottomSheet: CustomTextFormField(
           onPressed: (value) async {
-            final result = await ref.read(chatProvider).sendNewRequest(
+            final result = await ref.read(chatProvider).sendNewRequestForNewChat(
                   value,
                 );
 

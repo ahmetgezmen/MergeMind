@@ -43,7 +43,7 @@ class ChatPage extends ConsumerWidget {
         ),
         bottomSheet: CustomTextFormField(
           onPressed: (value) {
-
+            ref.read(chatProvider).sendRequestForCurrentChat(content: value, key: title );
           },
           formKey: GlobalKey<FormState>(),
           controller: TextEditingController(),
