@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:chatgptapp/constant%20/constant.dart';
+import 'package:chatgptapp/feature/cache/chat_cache_manager.dart';
 import 'package:chatgptapp/feature/models/services_models/choice_model.dart';
 import 'package:chatgptapp/feature/models/services_models/choices_model.dart';
 import 'package:chatgptapp/feature/models/services_models/message_model.dart';
@@ -11,12 +12,12 @@ import 'package:flutter/material.dart';
 
 
 class ChatsViewModel extends ChangeNotifier {
-  final String apiKeys;
-  final Map<dynamic, Choices> _chats = {};
+  String apiKeys;
+  Map<dynamic, Choices> _chats = {};
   Map<dynamic, Choices> get chats => _chats;
   String? openingChat;
   late NetworkManager networkManager;
-
+  ChatCacheManager chatCachManager = ChatCacheManager();
 
 
   void changeOpeningChat(String? key) {
@@ -25,9 +26,8 @@ class ChatsViewModel extends ChangeNotifier {
   }
 
   Future<void> fetch() async {
-    // todo fetch from cache
-    // await chatCachManager.fetch();
-    // _chats = chatCachManager.getAll() as Map<dynamic, Choices>;
+    await chatCachManager.fetch();
+    _chats = chatCachManager.getAll();
     networkManager = NetworkManager(apiKeys);
     notifyListeners();
   }
@@ -54,6 +54,7 @@ class ChatsViewModel extends ChangeNotifier {
         networkResponse.choices[0]
       ]));
       notifyListeners();
+      openingChat = key;
       return key;
     } else {
       notifyListeners();
@@ -64,17 +65,15 @@ class ChatsViewModel extends ChangeNotifier {
   Future<String> addNewChoicesChat(Choices chat) async {
     final key = DateTime.now().millisecondsSinceEpoch.toString();
     _chats[key] = chat;
-    // todo save to cache
-    // await chatCachManager.put(key, chat);
+    await chatCachManager.put(key, chat);
     notifyListeners();
     return key;
   }
 
   Future<void> updateChoicesChat(String key, Choice data) async {
     _chats[key]!.list.add(data);
-    // todo save to cache
-    // await chatCachManager.deleteElement(key);
-    // await chatCachManager.put(key, _chats[key]!);
+    await chatCachManager.deleteElement(key);
+    await chatCachManager.put(key, _chats[key]!);
     notifyListeners();
   }
 
