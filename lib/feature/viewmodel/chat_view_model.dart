@@ -17,12 +17,14 @@ class ChatsViewModel extends ChangeNotifier {
   String? openingChat = null;
   late NetworkManager networkManager;
 
-  changeOpeningChat(String? key) {
+
+
+  void changeOpeningChat(String? key) {
     openingChat = key;
     notifyListeners();
   }
 
-  fetch() async {
+  Future<void> fetch() async {
     // todo fetch from cache
     // await chatCachManager.fetch();
     // _chats = chatCachManager.getAll() as Map<dynamic, Choices>;
@@ -60,7 +62,7 @@ class ChatsViewModel extends ChangeNotifier {
   }
 
   Future<String> addNewChoicesChat(Choices chat) async {
-    String key = DateTime.now().millisecondsSinceEpoch.toString();
+    final key = DateTime.now().millisecondsSinceEpoch.toString();
     _chats[key] = chat;
     // todo save to cache
     // await chatCachManager.put(key, chat);
@@ -68,7 +70,7 @@ class ChatsViewModel extends ChangeNotifier {
     return key;
   }
 
-  updateChoicesChat(String key, Choice data) async {
+  Future<void> updateChoicesChat(String key, Choice data) async {
     _chats[key]!.list.add(data);
     // todo save to cache
     // await chatCachManager.deleteElement(key);
