@@ -1,3 +1,4 @@
+import 'package:chatgptapp/constant%20/constant.dart';
 import 'package:chatgptapp/feature/models/services_models/choices_model.dart';
 import 'package:chatgptapp/feature/provider/chat_provider.dart';
 import 'package:chatgptapp/feature/widgets/drawer_item.dart';
@@ -21,11 +22,11 @@ class CustomDrawer extends ConsumerWidget {
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
-              child: const Text('Drawer Header'),
+              child: Text(BaseConstant.drawerHeader),
             );
           }else {
-            final String elementKey = map.keys.elementAt(index - 1);
-            final Choices element = map.values.elementAt(index - 1);
+            final elementKey = map.keys.elementAt(index - 1) as String;
+            final element = map.values.elementAt(index - 1);
             return DrawerItem(
               title: element.list.elementAt(0).message.content,
               elementKey: elementKey,

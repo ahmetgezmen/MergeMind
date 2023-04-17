@@ -5,24 +5,24 @@ import 'package:chatgptapp/feature/services/i_network_manager.dart';
 import 'package:dio/src/response.dart';
 
 class NetworkManager extends INetworkManager {
-  String apiKey;
   NetworkManager(this.apiKey) {
     dioInit(apiKey);
   }
+  String apiKey;
 
   @override
   Future<NetworkResponse> get(
       {required RequestDataModel requestDataModel}) async {
-    final Response response =
-        await dio.get(ApiConstant.subUrl, data: requestDataModel.toJson());
-    return NetworkResponse.fromJson(response.data);
+    final response =
+        await dio.get('', data: requestDataModel.toJson());
+    return NetworkResponse.fromJson(response.data as Map<String, dynamic>);
   }
 
   @override
-  Future<NetworkResponse> post(
+  Future<Response> post(
       {required RequestDataModel requestDataModel}) async {
     final Response response =
-        await dio.post(ApiConstant.subUrl, data: requestDataModel.toJson());
-    return NetworkResponse.fromJson(response.data);
+        await dio.post('', data: requestDataModel.toJson());
+    return response;
   }
 }

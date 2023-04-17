@@ -33,14 +33,21 @@ class ChatPage extends ConsumerWidget {
         body: ListView.builder(
           itemCount: choices.list.length,
           itemBuilder: (context, index) {
-            bool isAssistant = choices.list[index].message.role != BaseConstant.user;
+            bool isAssistant =
+                choices.list[index].message.role != BaseConstant.user;
             return CustomCardWidget(
               isAssistant: isAssistant,
               content: choices.list[index].message.content,
             );
           },
         ),
-        bottomSheet: CustomTextFormField(),
+        bottomSheet: CustomTextFormField(
+          onPressed: (value) {
+
+          },
+          formKey: GlobalKey<FormState>(),
+          controller: TextEditingController(),
+        ),
       ),
     );
   }

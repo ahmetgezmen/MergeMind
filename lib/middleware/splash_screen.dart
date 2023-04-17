@@ -12,18 +12,15 @@ class SplashScreen extends ConsumerStatefulWidget {
 }
 
 class _SplashScreenState extends ConsumerState<SplashScreen> {
-
   bool isInitialized = false;
 
   appInitializing() async {
-
     // todo : app initializing
     await ref.read(chatProvider).fetch();
     setState(() {
       isInitialized = true;
     });
   }
-
 
   @override
   void initState() {

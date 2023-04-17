@@ -6,15 +6,13 @@ part 'message_model.g.dart';
 
 @freezed
 class Message with _$Message {
+
+
   const factory Message({
-required String content,
-required String role,
+    required String content,
+    required String role,
   }) = _Message;
-
-
 
   factory Message.fromJson(Map<String, dynamic> json) =>
       _$MessageFromJson(json);
 }
-
-

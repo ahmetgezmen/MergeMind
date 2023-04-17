@@ -9,14 +9,15 @@ import 'package:chatgptapp/feature/models/services_models/message_model.dart';
 import 'package:chatgptapp/feature/models/services_models/request_data_model.dart';
 import 'package:chatgptapp/feature/models/services_models/response_model.dart';
 import 'package:chatgptapp/feature/services/network_manager.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('request GET', () async {
     // add api key and tested
     const apiKey = '';
-    NetworkManager networkManager = NetworkManager(apiKey);
-    RequestDataModel rmodel = const RequestDataModel(
+    final networkManager = NetworkManager(apiKey);
+    const rmodel = RequestDataModel(
       model: 'gpt-3.5-turbo',
       messages: [
         Message(
@@ -25,8 +26,12 @@ void main() {
         ),
       ],
     );
-    final NetworkResponse response =
-        await networkManager.post(requestDataModel: rmodel);
-    print(response.toJson());
+    final response = await networkManager.post(requestDataModel: rmodel);
+    if (kDebugMode) {
+      print(
+        NetworkResponse.fromJson(response.data as Map<String, dynamic>)
+            .toJson(),
+      );
+    }
   });
 }
