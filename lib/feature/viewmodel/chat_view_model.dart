@@ -14,16 +14,17 @@ class ChatsViewModel extends ChangeNotifier {
   String apiKeys;
   Map<dynamic, Choices> _chats = {};
   Map<dynamic, Choices> get chats => _chats;
-  String? openingChat;
+  late String openingChat;
   late NetworkManager networkManager;
   ChatCacheManager chatCachManager = ChatCacheManager();
 
-  void changeOpeningChat(String? key) {
+  void changeOpeningChat(String key) {
     openingChat = key;
     notifyListeners();
   }
 
   Future<void> fetch() async {
+    openingChat = HomePageConstant.title;
     await chatCachManager.fetch();
     _chats = chatCachManager.getAll();
     networkManager = NetworkManager(apiKeys);

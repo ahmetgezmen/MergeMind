@@ -15,7 +15,7 @@ class CustomDrawer extends ConsumerWidget {
     return Drawer(
       child: ListView.builder(
         padding: EdgeInsets.zero,
-        itemCount: map.length + 1,
+        itemCount: map.length + 2,
         itemBuilder: (context, index) {
           if(index == 0 ){
             return const DrawerHeader(
@@ -24,9 +24,15 @@ class CustomDrawer extends ConsumerWidget {
               ),
               child: Text(BaseConstant.drawerHeader),
             );
-          }else {
-            final elementKey = map.keys.elementAt(index - 1) as String;
-            final element = map.values.elementAt(index - 1);
+          }else if(index == 1 ){
+            return DrawerItem(
+              title: HomePageConstant.title,
+              elementKey: HomePageConstant.title,
+              isOpen: provider.openingChat == HomePageConstant.title,
+            );
+          }else{
+            final elementKey = map.keys.elementAt(index - 2) as String;
+            final element = map.values.elementAt(index - 2);
             return DrawerItem(
               title: element.list.elementAt(0).message.content,
               elementKey: elementKey,
