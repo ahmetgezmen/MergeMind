@@ -34,20 +34,20 @@ class ChooseModelPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
-              const Text('Choose Model'),
+              const Text(BaseConstant.chooseModel),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   HomePage.go(context);
                 },
-                child: const Text('ChatGPT'),
+                child: const Text(BaseConstant.chatgpt),
               ).p16H.wInf,
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   DHomePage.go(context);
                 },
-                child: const Text('Dalee'),
+                child: const Text(BaseConstant.dalee),
               ).p16H.wInf,
             ],
           ),
