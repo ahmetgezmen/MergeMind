@@ -8,7 +8,7 @@ import 'package:chatgptapp/feature/chatgpt/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ChatPage extends ConsumerWidget {
+class ChatPage extends ConsumerStatefulWidget {
   static go(BuildContext context, String title) {
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
@@ -25,12 +25,20 @@ class ChatPage extends ConsumerWidget {
   final String title;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final Choices? choices = ref.watch(chatProvider).chats[title];
+  ConsumerState<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends ConsumerState<ChatPage> {
+
+  bool isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final Choices? choices = ref.watch(chatProvider).chats[widget.title];
     return choices != null ?  SafeArea(
       child: Scaffold(
         drawer: const CustomDrawer(),
-        appBar: appBar(title: title),
+        appBar: appBar(title: widget.title, isLoading: isLoading),
         body: ListView.builder(
           reverse: true,
           itemCount: choices.list.length,
@@ -44,13 +52,19 @@ class ChatPage extends ConsumerWidget {
             );
           },
         ),
-        bottomNavigationBar: CustomTextFormField(
-          onPressed: (value) {
-            ref.read(chatProvider).sendRequestForCurrentChat(content: value, key: title );
+        bottomNavigationBar: !isLoading ? CustomTextFormField(
+          onPressed: (value) async {
+            setState(() {
+              isLoading = true;
+            });
+            await ref.read(chatProvider).sendRequestForCurrentChat(content: value, key: widget.title );
+            setState(() {
+              isLoading = false;
+            });
           },
           formKey: GlobalKey<FormState>(),
           controller: TextEditingController(),
-        ),
+        ) : null,
       ),
     ):const SizedBox() ;
   }

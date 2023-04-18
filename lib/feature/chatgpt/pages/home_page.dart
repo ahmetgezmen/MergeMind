@@ -7,10 +7,7 @@ import 'package:chatgptapp/feature/chatgpt/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-
-
-
-class HomePage extends ConsumerWidget {
+class HomePage extends ConsumerStatefulWidget {
   static void go(BuildContext context) {
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
@@ -23,29 +20,45 @@ class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends ConsumerState<HomePage> {
+  bool isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         drawer: const CustomDrawer(),
-        appBar: appBar(title: HomePageConstant.title),
-        body:  const Center(
+        appBar: appBar(
+          title: HomePageConstant.title,
+          isLoading: isLoading,
+        ),
+        body: const Center(
           child: Text(HomePageConstant.askAnything),
         ),
-        bottomSheet: CustomTextFormField(
+        bottomSheet: !isLoading ?CustomTextFormField(
           onPressed: (value) async {
-            final result = await ref.read(chatProvider).sendNewRequestForNewChat(
-                  value,
-                );
-
+            setState(() {
+              isLoading = true;
+            });
+            final result =
+                await ref.read(chatProvider).sendNewRequestForNewChat(
+                      value,
+                    );
+            setState(() {
+              isLoading = false;
+            });
             if (result != false) {
-              if(context.mounted){
+              if (context.mounted) {
                 ChatPage.go(context, result.toString());
               }
             }
           },
           formKey: GlobalKey<FormState>(),
           controller: TextEditingController(),
-        ),
+        ) : null,
       ),
     );
   }
