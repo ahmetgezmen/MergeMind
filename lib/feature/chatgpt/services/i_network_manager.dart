@@ -14,7 +14,6 @@ abstract class INetworkManager {
     };
   }
 
-
   Future<NetworkResponse> get({required RequestDataModel requestDataModel});
 
   Future<Response> post({required RequestDataModel requestDataModel});

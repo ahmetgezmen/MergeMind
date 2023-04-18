@@ -5,6 +5,14 @@ import 'package:chatgptapp/utils/helper/hepers.dart';
 import 'package:flutter/material.dart';
 
 class ChooseModelPage extends StatelessWidget {
+  static go(context){
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(
+        builder: (context) => const ChooseModelPage(),
+      ),
+          (route) => false,
+    );
+  }
   const ChooseModelPage({Key? key}) : super(key: key);
 
   @override
@@ -13,6 +21,11 @@ class ChooseModelPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(BaseConstant.chooseModel),
+          actions: [
+            IconButton(onPressed: () {
+              // todo log page
+            }, icon: const Icon(Icons.insert_chart))
+          ],
         ),
         body:  SizedBox(
           width: double.infinity,

@@ -2,6 +2,7 @@ import 'package:chatgptapp/constant%20/constant.dart';
 import 'package:chatgptapp/feature/chatgpt/models/models.dart';
 import 'package:chatgptapp/feature/chatgpt/provider/chat_provider.dart';
 import 'package:chatgptapp/feature/chatgpt/widgets/drawer_item.dart';
+import 'package:chatgptapp/feature/choose_model_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -18,11 +19,24 @@ class CustomDrawer extends ConsumerWidget {
         itemCount: map.length + 2,
         itemBuilder: (context, index) {
           if(index == 0 ){
-            return const DrawerHeader(
-              decoration: BoxDecoration(
+            return DrawerHeader(
+
+              decoration: const BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text(BaseConstant.drawerHeader),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      IconButton(onPressed: () {
+                        ChooseModelPage.go(context);
+                      }, icon: const Icon(Icons.arrow_back)),
+                      const Text(BaseConstant.drawerHeader),
+                    ],
+                  ),
+                ],
+              ),
             );
           }else if(index == 1 ){
             return DrawerItem(
