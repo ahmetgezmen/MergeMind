@@ -1,4 +1,5 @@
 import 'package:chatgptapp/feature/chatgpt/provider/chat_provider.dart';
+import 'package:chatgptapp/feature/chatgpt/provider/log_provider.dart';
 import 'package:chatgptapp/feature/chatgpt/widgets/loading_widget.dart';
 import 'package:chatgptapp/feature/choose_model_page.dart';
 import 'package:flutter/widgets.dart';
@@ -18,6 +19,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     // todo : app initializing
     await Future.delayed(Duration.zero);
     await ref.read(chatProvider).fetch();
+    ref.read(logProvider).fetch();
     setState(() {
       isInitialized = true;
     });

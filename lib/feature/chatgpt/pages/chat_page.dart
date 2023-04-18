@@ -57,7 +57,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
             setState(() {
               isLoading = true;
             });
-            await ref.read(chatProvider).sendRequestForCurrentChat(content: value, key: widget.title );
+            await ref.read(chatProvider).sendRequestForCurrentChat(content: value, key: widget.title, ref: ref);
             setState(() {
               isLoading = false;
             });

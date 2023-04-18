@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:chatgptapp/constant%20/constant.dart';
 import 'package:chatgptapp/feature/chatgpt/cache/chat_cache_manager.dart';
-import 'package:chatgptapp/feature/chatgpt/cache/log_cache_manager.dart';
 import 'package:chatgptapp/feature/chatgpt/models/models.dart';
+import 'package:chatgptapp/feature/chatgpt/provider/log_provider.dart';
 import 'package:chatgptapp/feature/chatgpt/services/network_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ChatsViewModel extends ChangeNotifier {
   String apiKeys;
@@ -14,7 +15,6 @@ class ChatsViewModel extends ChangeNotifier {
   late String openingChat;
   late NetworkManager networkManager;
   ChatCacheManager chatCachManager = ChatCacheManager();
-  LogCacheManager logCacheManager = LogCacheManager();
 
   void changeOpeningChat(String key) {
     openingChat = key;
@@ -26,11 +26,11 @@ class ChatsViewModel extends ChangeNotifier {
     await chatCachManager.fetch();
     _chats = chatCachManager.getAll();
     networkManager = NetworkManager(apiKeys);
-    await logCacheManager.fetch();
     notifyListeners();
   }
 
-  Future<Object> sendNewRequestForNewChat(String content) async {
+  Future<Object> sendNewRequestForNewChat(String content, WidgetRef ref) async {
+    final logCacheProvider = ref.read(logProvider);
     final Message sendingMessage = Message(
       content: content,
       role: BaseConstant.user,
@@ -54,7 +54,7 @@ class ChatsViewModel extends ChangeNotifier {
         statusMessage: response.statusMessage,
       );
 
-      logCacheManager.put(dateTimeMillisecondEpoch, logModel);
+      logCacheProvider.put(dateTimeMillisecondEpoch, logModel);
 
       final List<Choice> sendList = [
         Choice(index: 0, message: sendingMessage, finish_reason: 'stop'),
@@ -72,14 +72,15 @@ class ChatsViewModel extends ChangeNotifier {
         statusCode: response.statusCode,
         statusMessage: response.statusMessage,
       );
-      logCacheManager.put(dateTimeMillisecondEpoch, logModel);
+      logCacheProvider.put(dateTimeMillisecondEpoch, logModel);
       notifyListeners();
       return false;
     }
   }
 
   Future<Object> sendRequestForCurrentChat(
-      {required String content, required String key}) async {
+      {required String content, required String key, required WidgetRef ref}) async {
+    final logCacheProvider = ref.read(logProvider);
     final Message sendingMessage = Message(
       content: content,
       role: BaseConstant.user,
@@ -114,7 +115,7 @@ class ChatsViewModel extends ChangeNotifier {
         statusMessage: response.statusMessage,
       );
 
-      logCacheManager.put(dateTimeMillisecondEpoch, logModel);
+      logCacheProvider.put(dateTimeMillisecondEpoch, logModel);
 
       final List<Choice> sendList = [
         Choice(index: 0, message: sendingMessage, finish_reason: 'stop'),
@@ -131,7 +132,7 @@ class ChatsViewModel extends ChangeNotifier {
         statusCode: response.statusCode,
         statusMessage: response.statusMessage,
       );
-      logCacheManager.put(dateTimeMillisecondEpoch, logModel);
+      logCacheProvider.put(dateTimeMillisecondEpoch, logModel);
       notifyListeners();
       return false;
     }

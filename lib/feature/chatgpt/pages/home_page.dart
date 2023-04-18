@@ -46,6 +46,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             final result =
                 await ref.read(chatProvider).sendNewRequestForNewChat(
                       value,
+                  ref,
                     );
             setState(() {
               isLoading = false;
