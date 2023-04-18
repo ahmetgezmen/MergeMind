@@ -42,7 +42,7 @@ class ChatPage extends ConsumerWidget {
             );
           },
         ),
-        bottomSheet: CustomTextFormField(
+        bottomNavigationBar: CustomTextFormField(
           onPressed: (value) {
             ref.read(chatProvider).sendRequestForCurrentChat(content: value, key: title );
           },

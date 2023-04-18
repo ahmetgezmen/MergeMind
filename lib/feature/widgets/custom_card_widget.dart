@@ -10,15 +10,19 @@ class CustomCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
+        side: const BorderSide(color: Colors.white70, width: 1),
         borderRadius: BorderRadius.circular(10.0),
       ),
       margin: const EdgeInsets.all(10),
       child: ListTile(
         leading: isAssistant ? const Icon(Icons.assistant) : null,
         trailing: isAssistant ? null : const Icon(Icons.person),
-        title: Text(
-          content.trim(),
-          textAlign: isAssistant ? TextAlign.left : TextAlign.right,
+        title: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            content.trim(),
+            textAlign: isAssistant ? TextAlign.left : TextAlign.right,
+          ),
         ),
       ),
     );
