@@ -13,21 +13,24 @@ class CustomTextFormField extends StatelessWidget {
       key: formKey,
       child: TextFormField(
         validator: (value) {
-          if (value == null || value.isEmpty || value.length < 10) {
+          if (value == null || value.isEmpty || value.length < 5) {
             return BaseConstant.validateMessage;
           }
           return null;
         },
         onFieldSubmitted: (value) {
-          formKey.currentState!.validate();
-          onPressed?.call(value);
+
+          if(formKey.currentState!.validate()) {
+            onPressed?.call(value);
+          }
         },
         controller: controller,
         decoration: InputDecoration(
           hintText: HomePageConstant.ask,
           suffixIcon: IconButton(onPressed:(){
-            formKey.currentState!.validate();
-            onPressed?.call(controller.text);
+            if(formKey.currentState!.validate()) {
+              onPressed?.call(controller.text);
+            }
           } , icon: const Icon(Icons.send)),
           prefixIcon: const Icon(Icons.search),
         ),

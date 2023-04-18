@@ -2,6 +2,7 @@ import 'package:chatgptapp/constant%20/constant.dart';
 import 'package:chatgptapp/feature/pages/chat_page.dart';
 import 'package:chatgptapp/feature/pages/home_page.dart';
 import 'package:chatgptapp/feature/provider/chat_provider.dart';
+import 'package:chatgptapp/utils/helper/durations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,13 +25,13 @@ class DrawerItem extends ConsumerWidget {
           ? InkWell(
               child: const Icon(Icons.cancel),
               onTap: () async {
-                await ref.read(chatProvider).removeChat(elementKey);
                 ref
                     .read(chatProvider)
                     .changeOpeningChat(HomePageConstant.title);
                 if (context.mounted) {
                   HomePage.go(context);
                 }
+                ref.read(chatProvider).removeChat(elementKey);
               },
             )
           : null,

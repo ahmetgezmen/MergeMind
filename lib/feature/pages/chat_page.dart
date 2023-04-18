@@ -10,12 +10,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ChatPage extends ConsumerWidget {
   static go(BuildContext context, String title) {
-    Navigator.of(context).push(
+    Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (context) => ChatPage(
           title: title,
         ),
       ),
+      (route) => false,
     );
   }
 
@@ -25,8 +26,8 @@ class ChatPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Choices choices = ref.watch(chatProvider).chats[title]!;
-    return SafeArea(
+    final Choices? choices = ref.watch(chatProvider).chats[title];
+    return choices != null ?  SafeArea(
       child: Scaffold(
         drawer: const CustomDrawer(),
         appBar: appBar(title: title),
@@ -49,6 +50,6 @@ class ChatPage extends ConsumerWidget {
           controller: TextEditingController(),
         ),
       ),
-    );
+    ):const SizedBox() ;
   }
 }
