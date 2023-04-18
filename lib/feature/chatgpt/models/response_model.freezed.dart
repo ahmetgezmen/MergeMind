@@ -163,9 +163,7 @@ class __$$_NetworkResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_NetworkResponse
-    with DiagnosticableTreeMixin
-    implements _NetworkResponse {
+class _$_NetworkResponse implements _NetworkResponse {
   const _$_NetworkResponse(
       {required this.id,
       required this.object,
@@ -195,20 +193,8 @@ class _$_NetworkResponse
   final Usage usage;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkResponse(id: $id, object: $object, created: $created, choices: $choices, usage: $usage)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'NetworkResponse'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('object', object))
-      ..add(DiagnosticsProperty('created', created))
-      ..add(DiagnosticsProperty('choices', choices))
-      ..add(DiagnosticsProperty('usage', usage));
   }
 
   @override

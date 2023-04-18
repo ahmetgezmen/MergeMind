@@ -1,8 +1,7 @@
 import 'dart:io';
 
-import 'package:chatgptapp/feature/models/services_models/request_data_model.dart';
-import 'package:chatgptapp/feature/models/services_models/response_model.dart';
-import 'package:chatgptapp/feature/services/dio.dart';
+import 'package:chatgptapp/feature/chatgpt/models/models.dart';
+import 'package:chatgptapp/feature/chatgpt/services/dio.dart';
 import 'package:dio/dio.dart';
 
 abstract class INetworkManager {

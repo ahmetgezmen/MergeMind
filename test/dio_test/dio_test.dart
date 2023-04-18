@@ -5,10 +5,8 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:chatgptapp/feature/models/services_models/message_model.dart';
-import 'package:chatgptapp/feature/models/services_models/request_data_model.dart';
-import 'package:chatgptapp/feature/models/services_models/response_model.dart';
-import 'package:chatgptapp/feature/services/network_manager.dart';
+import 'package:chatgptapp/feature/chatgpt/models/models.dart';
+import 'package:chatgptapp/feature/chatgpt/services/network_manager.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 

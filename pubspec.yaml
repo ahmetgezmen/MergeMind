@@ -101,6 +101,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-  assets:
-    - lib/feature/viewmodel/chat_view_model.dart
 

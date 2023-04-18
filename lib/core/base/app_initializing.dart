@@ -1,7 +1,5 @@
 import 'package:chatgptapp/core/base/app_base.dart';
-import 'package:chatgptapp/feature/models/services_models/choice_model.dart';
-import 'package:chatgptapp/feature/models/services_models/choices_model.dart';
-import 'package:chatgptapp/feature/models/services_models/message_model.dart';
+import 'package:chatgptapp/feature/chatgpt/models/models.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';

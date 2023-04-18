@@ -94,7 +94,7 @@ class __$$_ChoicesCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 @HiveType(typeId: 3)
-class _$_Choices with DiagnosticableTreeMixin implements _Choices {
+class _$_Choices implements _Choices {
   const _$_Choices({@HiveField(0) required final List<Choice> list})
       : _list = list;
 
@@ -111,16 +111,8 @@ class _$_Choices with DiagnosticableTreeMixin implements _Choices {
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'Choices(list: $list)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Choices'))
-      ..add(DiagnosticsProperty('list', list));
   }
 
   @override

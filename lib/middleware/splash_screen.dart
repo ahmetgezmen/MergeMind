@@ -1,6 +1,6 @@
-import 'package:chatgptapp/feature/pages/home_page.dart';
-import 'package:chatgptapp/feature/provider/chat_provider.dart';
-import 'package:chatgptapp/feature/widgets/loading_widget.dart';
+import 'package:chatgptapp/feature/chatgpt/pages/home_page.dart';
+import 'package:chatgptapp/feature/chatgpt/provider/chat_provider.dart';
+import 'package:chatgptapp/feature/chatgpt/widgets/loading_widget.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

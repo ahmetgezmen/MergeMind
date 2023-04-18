@@ -1,13 +1,9 @@
 import 'dart:io';
 
 import 'package:chatgptapp/constant%20/constant.dart';
-import 'package:chatgptapp/feature/cache/chat_cache_manager.dart';
-import 'package:chatgptapp/feature/models/services_models/choice_model.dart';
-import 'package:chatgptapp/feature/models/services_models/choices_model.dart';
-import 'package:chatgptapp/feature/models/services_models/message_model.dart';
-import 'package:chatgptapp/feature/models/services_models/request_data_model.dart';
-import 'package:chatgptapp/feature/models/services_models/response_model.dart';
-import 'package:chatgptapp/feature/services/network_manager.dart';
+import 'package:chatgptapp/feature/chatgpt/cache/chat_cache_manager.dart';
+import 'package:chatgptapp/feature/chatgpt/models/models.dart';
+import 'package:chatgptapp/feature/chatgpt/services/network_manager.dart';
 import 'package:flutter/material.dart';
 
 class ChatsViewModel extends ChangeNotifier {

@@ -1,10 +1,10 @@
 import 'package:chatgptapp/constant%20/constant.dart';
-import 'package:chatgptapp/feature/models/services_models/choices_model.dart';
-import 'package:chatgptapp/feature/provider/chat_provider.dart';
-import 'package:chatgptapp/feature/widgets/app_bar.dart';
-import 'package:chatgptapp/feature/widgets/custom_card_widget.dart';
-import 'package:chatgptapp/feature/widgets/custom_drawer.dart';
-import 'package:chatgptapp/feature/widgets/custom_text_form_field.dart';
+import 'package:chatgptapp/feature/chatgpt/models/models.dart';
+import 'package:chatgptapp/feature/chatgpt/provider/chat_provider.dart';
+import 'package:chatgptapp/feature/chatgpt/widgets/app_bar.dart';
+import 'package:chatgptapp/feature/chatgpt/widgets/custom_card_widget.dart';
+import 'package:chatgptapp/feature/chatgpt/widgets/custom_drawer.dart';
+import 'package:chatgptapp/feature/chatgpt/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -32,13 +32,15 @@ class ChatPage extends ConsumerWidget {
         drawer: const CustomDrawer(),
         appBar: appBar(title: title),
         body: ListView.builder(
+          reverse: true,
           itemCount: choices.list.length,
           itemBuilder: (context, index) {
+            final int reverseIndex = choices.list.length - index - 1;
             bool isAssistant =
-                choices.list[index].message.role != BaseConstant.user;
+                choices.list[reverseIndex].message.role != BaseConstant.user;
             return CustomCardWidget(
               isAssistant: isAssistant,
-              content: choices.list[index].message.content,
+              content: choices.list[reverseIndex].message.content,
             );
           },
         ),

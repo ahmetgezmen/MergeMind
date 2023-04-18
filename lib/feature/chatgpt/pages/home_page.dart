@@ -1,9 +1,9 @@
 import 'package:chatgptapp/constant%20/constant.dart';
-import 'package:chatgptapp/feature/pages/chat_page.dart';
-import 'package:chatgptapp/feature/provider/chat_provider.dart';
-import 'package:chatgptapp/feature/widgets/app_bar.dart';
-import 'package:chatgptapp/feature/widgets/custom_drawer.dart';
-import 'package:chatgptapp/feature/widgets/custom_text_form_field.dart';
+import 'package:chatgptapp/feature/chatgpt/pages/chat_page.dart';
+import 'package:chatgptapp/feature/chatgpt/provider/chat_provider.dart';
+import 'package:chatgptapp/feature/chatgpt/widgets/app_bar.dart';
+import 'package:chatgptapp/feature/chatgpt/widgets/custom_drawer.dart';
+import 'package:chatgptapp/feature/chatgpt/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

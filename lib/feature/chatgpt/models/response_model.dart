@@ -1,6 +1,5 @@
-import 'package:chatgptapp/feature/models/services_models/choice_model.dart';
-import 'package:chatgptapp/feature/models/services_models/usage_model.dart';
-import 'package:flutter/foundation.dart';
+import 'package:chatgptapp/feature/chatgpt/models/choice_model.dart';
+import 'package:chatgptapp/feature/chatgpt/models/usage_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'response_model.freezed.dart';

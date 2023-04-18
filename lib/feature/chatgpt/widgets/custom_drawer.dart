@@ -1,7 +1,7 @@
 import 'package:chatgptapp/constant%20/constant.dart';
-import 'package:chatgptapp/feature/models/services_models/choices_model.dart';
-import 'package:chatgptapp/feature/provider/chat_provider.dart';
-import 'package:chatgptapp/feature/widgets/drawer_item.dart';
+import 'package:chatgptapp/feature/chatgpt/models/models.dart';
+import 'package:chatgptapp/feature/chatgpt/provider/chat_provider.dart';
+import 'package:chatgptapp/feature/chatgpt/widgets/drawer_item.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

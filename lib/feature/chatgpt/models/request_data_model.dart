@@ -1,4 +1,4 @@
-import 'package:chatgptapp/feature/models/services_models/message_model.dart';
+import 'package:chatgptapp/feature/chatgpt/models/message_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
