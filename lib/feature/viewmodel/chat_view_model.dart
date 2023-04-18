@@ -58,7 +58,8 @@ class ChatsViewModel extends ChangeNotifier {
     }
   }
 
-  Future<Object> sendRequestForCurrentChat({required String content, required String key}) async {
+  Future<Object> sendRequestForCurrentChat(
+      {required String content, required String key}) async {
     final Message sendingMessage = Message(
       content: content,
       role: BaseConstant.user,
@@ -97,6 +98,17 @@ class ChatsViewModel extends ChangeNotifier {
     }
   }
 
+  Future<bool> removeChat(String key) async {
+    try {
+      _chats.remove(key);
+      await chatCachManager.deleteElement(key);
+      notifyListeners();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   Future<String> addNewChoicesChat(Choices chat) async {
     final key = DateTime.now().millisecondsSinceEpoch.toString();
     _chats[key] = chat;
@@ -105,10 +117,10 @@ class ChatsViewModel extends ChangeNotifier {
     return key;
   }
 
-  Future<void> updateChoicesChat(String key, List<Choice> list ) async {
+  Future<void> updateChoicesChat(String key, List<Choice> list) async {
     final Choices choices = _chats[key]!;
     final newChoices = choices.copyWith(
-      list: choices.list+ list,
+      list: choices.list + list,
     );
     _chats.remove(key);
     _chats[key] = newChoices;

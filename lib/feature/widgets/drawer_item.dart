@@ -20,11 +20,25 @@ class DrawerItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       title: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis),
+      trailing: HomePageConstant.title != elementKey
+          ? InkWell(
+              child: const Icon(Icons.cancel),
+              onTap: () async {
+                await ref.read(chatProvider).removeChat(elementKey);
+                ref
+                    .read(chatProvider)
+                    .changeOpeningChat(HomePageConstant.title);
+                if (context.mounted) {
+                  HomePage.go(context);
+                }
+              },
+            )
+          : null,
       onTap: () {
         ref.read(chatProvider).changeOpeningChat(elementKey);
         if (elementKey != HomePageConstant.title) {
           ChatPage.go(context, elementKey);
-        }else{
+        } else {
           HomePage.go(context);
         }
       },
