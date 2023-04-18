@@ -1,6 +1,6 @@
-import 'package:chatgptapp/feature/chatgpt/pages/home_page.dart';
 import 'package:chatgptapp/feature/chatgpt/provider/chat_provider.dart';
 import 'package:chatgptapp/feature/chatgpt/widgets/loading_widget.dart';
+import 'package:chatgptapp/feature/choose_model_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -31,6 +31,6 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return isInitialized ? const HomePage() : LoadingWidget.withScaffold();
+    return isInitialized ? const ChooseModelPage() : LoadingWidget.withScaffold();
   }
 }
