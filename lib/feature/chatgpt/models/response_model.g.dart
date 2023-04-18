@@ -3,6 +3,56 @@
 part of 'response_model.dart';
 
 // **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
+class NetworkResponseAdapter extends TypeAdapter<_$_NetworkResponse> {
+  @override
+  final int typeId = 6;
+
+  @override
+  _$_NetworkResponse read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return _$_NetworkResponse(
+      id: fields[0] as String,
+      object: fields[1] as String,
+      created: fields[2] as int,
+      choices: (fields[3] as List).cast<Choice>(),
+      usage: fields[4] as Usage,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, _$_NetworkResponse obj) {
+    writer
+      ..writeByte(5)
+      ..writeByte(0)
+      ..write(obj.id)
+      ..writeByte(1)
+      ..write(obj.object)
+      ..writeByte(2)
+      ..write(obj.created)
+      ..writeByte(4)
+      ..write(obj.usage)
+      ..writeByte(3)
+      ..write(obj.choices);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is NetworkResponseAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 

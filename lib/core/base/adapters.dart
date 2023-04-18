@@ -6,4 +6,7 @@ void adapters(){
   Hive.registerAdapter(ChoiceAdapter());
   Hive.registerAdapter(ChoicesAdapter());
   Hive.registerAdapter(LogModelAdapter());
+  Hive.registerAdapter(RequestDataModelAdapter());
+  Hive.registerAdapter(NetworkResponseAdapter());
+  Hive.registerAdapter(UsageAdapter());
 }

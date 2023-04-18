@@ -20,7 +20,9 @@ RequestDataModel _$RequestDataModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RequestDataModel {
+  @HiveField(0)
   String get model => throw _privateConstructorUsedError;
+  @HiveField(1)
   List<Message> get messages => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +37,7 @@ abstract class $RequestDataModelCopyWith<$Res> {
           RequestDataModel value, $Res Function(RequestDataModel) then) =
       _$RequestDataModelCopyWithImpl<$Res, RequestDataModel>;
   @useResult
-  $Res call({String model, List<Message> messages});
+  $Res call({@HiveField(0) String model, @HiveField(1) List<Message> messages});
 }
 
 /// @nodoc
@@ -75,7 +77,7 @@ abstract class _$$_RequestDataModelCopyWith<$Res>
       __$$_RequestDataModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String model, List<Message> messages});
+  $Res call({@HiveField(0) String model, @HiveField(1) List<Message> messages});
 }
 
 /// @nodoc
@@ -108,20 +110,24 @@ class __$$_RequestDataModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
+@HiveType(typeId: 5)
 class _$_RequestDataModel
     with DiagnosticableTreeMixin
     implements _RequestDataModel {
   const _$_RequestDataModel(
-      {required this.model, required final List<Message> messages})
+      {@HiveField(0) required this.model,
+      @HiveField(1) required final List<Message> messages})
       : _messages = messages;
 
   factory _$_RequestDataModel.fromJson(Map<String, dynamic> json) =>
       _$$_RequestDataModelFromJson(json);
 
   @override
+  @HiveField(0)
   final String model;
   final List<Message> _messages;
   @override
+  @HiveField(1)
   List<Message> get messages {
     if (_messages is EqualUnmodifiableListView) return _messages;
     // ignore: implicit_dynamic_type
@@ -172,15 +178,18 @@ class _$_RequestDataModel
 
 abstract class _RequestDataModel implements RequestDataModel {
   const factory _RequestDataModel(
-      {required final String model,
-      required final List<Message> messages}) = _$_RequestDataModel;
+          {@HiveField(0) required final String model,
+          @HiveField(1) required final List<Message> messages}) =
+      _$_RequestDataModel;
 
   factory _RequestDataModel.fromJson(Map<String, dynamic> json) =
       _$_RequestDataModel.fromJson;
 
   @override
+  @HiveField(0)
   String get model;
   @override
+  @HiveField(1)
   List<Message> get messages;
   @override
   @JsonKey(ignore: true)

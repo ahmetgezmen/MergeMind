@@ -20,10 +20,15 @@ NetworkResponse _$NetworkResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NetworkResponse {
+  @HiveField(0)
   String get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get object => throw _privateConstructorUsedError;
+  @HiveField(2)
   int get created => throw _privateConstructorUsedError;
+  @HiveField(3)
   List<Choice> get choices => throw _privateConstructorUsedError;
+  @HiveField(4)
   Usage get usage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,11 +44,11 @@ abstract class $NetworkResponseCopyWith<$Res> {
       _$NetworkResponseCopyWithImpl<$Res, NetworkResponse>;
   @useResult
   $Res call(
-      {String id,
-      String object,
-      int created,
-      List<Choice> choices,
-      Usage usage});
+      {@HiveField(0) String id,
+      @HiveField(1) String object,
+      @HiveField(2) int created,
+      @HiveField(3) List<Choice> choices,
+      @HiveField(4) Usage usage});
 
   $UsageCopyWith<$Res> get usage;
 }
@@ -109,11 +114,11 @@ abstract class _$$_NetworkResponseCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String object,
-      int created,
-      List<Choice> choices,
-      Usage usage});
+      {@HiveField(0) String id,
+      @HiveField(1) String object,
+      @HiveField(2) int created,
+      @HiveField(3) List<Choice> choices,
+      @HiveField(4) Usage usage});
 
   @override
   $UsageCopyWith<$Res> get usage;
@@ -163,26 +168,31 @@ class __$$_NetworkResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: 6)
 class _$_NetworkResponse implements _NetworkResponse {
   const _$_NetworkResponse(
-      {required this.id,
-      required this.object,
-      required this.created,
-      required final List<Choice> choices,
-      required this.usage})
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.object,
+      @HiveField(2) required this.created,
+      @HiveField(3) required final List<Choice> choices,
+      @HiveField(4) required this.usage})
       : _choices = choices;
 
   factory _$_NetworkResponse.fromJson(Map<String, dynamic> json) =>
       _$$_NetworkResponseFromJson(json);
 
   @override
+  @HiveField(0)
   final String id;
   @override
+  @HiveField(1)
   final String object;
   @override
+  @HiveField(2)
   final int created;
   final List<Choice> _choices;
   @override
+  @HiveField(3)
   List<Choice> get choices {
     if (_choices is EqualUnmodifiableListView) return _choices;
     // ignore: implicit_dynamic_type
@@ -190,6 +200,7 @@ class _$_NetworkResponse implements _NetworkResponse {
   }
 
   @override
+  @HiveField(4)
   final Usage usage;
 
   @override
@@ -230,24 +241,29 @@ class _$_NetworkResponse implements _NetworkResponse {
 
 abstract class _NetworkResponse implements NetworkResponse {
   const factory _NetworkResponse(
-      {required final String id,
-      required final String object,
-      required final int created,
-      required final List<Choice> choices,
-      required final Usage usage}) = _$_NetworkResponse;
+      {@HiveField(0) required final String id,
+      @HiveField(1) required final String object,
+      @HiveField(2) required final int created,
+      @HiveField(3) required final List<Choice> choices,
+      @HiveField(4) required final Usage usage}) = _$_NetworkResponse;
 
   factory _NetworkResponse.fromJson(Map<String, dynamic> json) =
       _$_NetworkResponse.fromJson;
 
   @override
+  @HiveField(0)
   String get id;
   @override
+  @HiveField(1)
   String get object;
   @override
+  @HiveField(2)
   int get created;
   @override
+  @HiveField(3)
   List<Choice> get choices;
   @override
+  @HiveField(4)
   Usage get usage;
   @override
   @JsonKey(ignore: true)

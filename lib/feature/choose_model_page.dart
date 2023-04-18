@@ -1,6 +1,7 @@
 import 'package:chatgptapp/constant%20/constant.dart';
 import 'package:chatgptapp/feature/chatgpt/pages/home_page.dart';
 import 'package:chatgptapp/feature/dalee/pages/d_home_page.dart';
+import 'package:chatgptapp/feature/log/log_main_page.dart';
 import 'package:chatgptapp/utils/helper/hepers.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,7 @@ class ChooseModelPage extends StatelessWidget {
           title: const Text(BaseConstant.chooseModel),
           actions: [
             IconButton(onPressed: () {
-              // todo log page
+              LogMainPage.go(context);
             }, icon: const Icon(Icons.insert_chart))
           ],
         ),

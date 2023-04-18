@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:chatgptapp/constant%20/constant.dart';
 import 'package:chatgptapp/feature/chatgpt/cache/chat_cache_manager.dart';
+import 'package:chatgptapp/feature/chatgpt/cache/log_cache_manager.dart';
 import 'package:chatgptapp/feature/chatgpt/models/models.dart';
 import 'package:chatgptapp/feature/chatgpt/services/network_manager.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class ChatsViewModel extends ChangeNotifier {
   late String openingChat;
   late NetworkManager networkManager;
   ChatCacheManager chatCachManager = ChatCacheManager();
+  LogCacheManager logCacheManager = LogCacheManager();
 
   void changeOpeningChat(String key) {
     openingChat = key;
@@ -24,6 +26,7 @@ class ChatsViewModel extends ChangeNotifier {
     await chatCachManager.fetch();
     _chats = chatCachManager.getAll();
     networkManager = NetworkManager(apiKeys);
+    await logCacheManager.fetch();
     notifyListeners();
   }
 
@@ -36,19 +39,40 @@ class ChatsViewModel extends ChangeNotifier {
       model: ApiConstant.aIModel,
       messages: [sendingMessage],
     );
+    final String dateTimeMillisecondEpoch =
+        DateTime.now().millisecondsSinceEpoch.toString();
+    late LogModel logModel;
     final response = await networkManager.post(requestDataModel: rModel);
     if (response.statusCode == HttpStatus.ok) {
       final networkResponse =
           NetworkResponse.fromJson(response.data as Map<String, dynamic>);
+
+      logModel = LogModel(
+        requestData: rModel,
+        networkResponse: networkResponse,
+        statusCode: response.statusCode,
+        statusMessage: response.statusMessage,
+      );
+
+      logCacheManager.put(dateTimeMillisecondEpoch, logModel);
+
       final List<Choice> sendList = [
         Choice(index: 0, message: sendingMessage, finish_reason: 'stop'),
         networkResponse.choices[0],
       ];
       final key = await addNewChoicesChat(Choices(list: sendList));
+
       notifyListeners();
       openingChat = key;
       return key;
     } else {
+      logModel = LogModel(
+        requestData: rModel,
+        networkResponse: null,
+        statusCode: response.statusCode,
+        statusMessage: response.statusMessage,
+      );
+      logCacheManager.put(dateTimeMillisecondEpoch, logModel);
       notifyListeners();
       return false;
     }
@@ -76,10 +100,22 @@ class ChatsViewModel extends ChangeNotifier {
       messages: messages,
     );
 
+    final String dateTimeMillisecondEpoch =
+    DateTime.now().millisecondsSinceEpoch.toString();
+    late LogModel logModel;
     final response = await networkManager.post(requestDataModel: rModel);
     if (response.statusCode == HttpStatus.ok) {
       final networkResponse =
           NetworkResponse.fromJson(response.data as Map<String, dynamic>);
+      logModel = LogModel(
+        requestData: rModel,
+        networkResponse: networkResponse,
+        statusCode: response.statusCode,
+        statusMessage: response.statusMessage,
+      );
+
+      logCacheManager.put(dateTimeMillisecondEpoch, logModel);
+
       final List<Choice> sendList = [
         Choice(index: 0, message: sendingMessage, finish_reason: 'stop'),
         networkResponse.choices[0],
@@ -89,6 +125,13 @@ class ChatsViewModel extends ChangeNotifier {
       openingChat = key;
       return key;
     } else {
+      logModel = LogModel(
+        requestData: rModel,
+        networkResponse: null,
+        statusCode: response.statusCode,
+        statusMessage: response.statusMessage,
+      );
+      logCacheManager.put(dateTimeMillisecondEpoch, logModel);
       notifyListeners();
       return false;
     }

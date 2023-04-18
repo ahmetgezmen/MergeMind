@@ -20,8 +20,11 @@ Usage _$UsageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Usage {
+  @HiveField(0)
   int get prompt_tokens => throw _privateConstructorUsedError;
+  @HiveField(1)
   int get completion_tokens => throw _privateConstructorUsedError;
+  @HiveField(2)
   int get total_tokens => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +37,10 @@ abstract class $UsageCopyWith<$Res> {
   factory $UsageCopyWith(Usage value, $Res Function(Usage) then) =
       _$UsageCopyWithImpl<$Res, Usage>;
   @useResult
-  $Res call({int prompt_tokens, int completion_tokens, int total_tokens});
+  $Res call(
+      {@HiveField(0) int prompt_tokens,
+      @HiveField(1) int completion_tokens,
+      @HiveField(2) int total_tokens});
 }
 
 /// @nodoc
@@ -77,7 +83,10 @@ abstract class _$$_UsageCopyWith<$Res> implements $UsageCopyWith<$Res> {
       __$$_UsageCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int prompt_tokens, int completion_tokens, int total_tokens});
+  $Res call(
+      {@HiveField(0) int prompt_tokens,
+      @HiveField(1) int completion_tokens,
+      @HiveField(2) int total_tokens});
 }
 
 /// @nodoc
@@ -112,20 +121,24 @@ class __$$_UsageCopyWithImpl<$Res> extends _$UsageCopyWithImpl<$Res, _$_Usage>
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: 7)
 class _$_Usage with DiagnosticableTreeMixin implements _Usage {
   const _$_Usage(
-      {required this.prompt_tokens,
-      required this.completion_tokens,
-      required this.total_tokens});
+      {@HiveField(0) required this.prompt_tokens,
+      @HiveField(1) required this.completion_tokens,
+      @HiveField(2) required this.total_tokens});
 
   factory _$_Usage.fromJson(Map<String, dynamic> json) =>
       _$$_UsageFromJson(json);
 
   @override
+  @HiveField(0)
   final int prompt_tokens;
   @override
+  @HiveField(1)
   final int completion_tokens;
   @override
+  @HiveField(2)
   final int total_tokens;
 
   @override
@@ -177,17 +190,20 @@ class _$_Usage with DiagnosticableTreeMixin implements _Usage {
 
 abstract class _Usage implements Usage {
   const factory _Usage(
-      {required final int prompt_tokens,
-      required final int completion_tokens,
-      required final int total_tokens}) = _$_Usage;
+      {@HiveField(0) required final int prompt_tokens,
+      @HiveField(1) required final int completion_tokens,
+      @HiveField(2) required final int total_tokens}) = _$_Usage;
 
   factory _Usage.fromJson(Map<String, dynamic> json) = _$_Usage.fromJson;
 
   @override
+  @HiveField(0)
   int get prompt_tokens;
   @override
+  @HiveField(1)
   int get completion_tokens;
   @override
+  @HiveField(2)
   int get total_tokens;
   @override
   @JsonKey(ignore: true)
