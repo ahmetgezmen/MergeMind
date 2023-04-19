@@ -14,6 +14,6 @@ class BaseConstant{
   static const enterWidth = 'Not Empty';
   static const enterHeight = 'Not Empty';
   static const highValue = 'High Value';
-
+  static const validatePromt = 'Please enter value. Value bigger than 15 and less than 500';
   const BaseConstant._();
 }

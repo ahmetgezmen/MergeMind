@@ -58,6 +58,14 @@ class _DHomePageState extends State<DHomePage> {
           mainAxisSize: MainAxisSize.max,
           children: [
             CustomTextFormFieldForDalee(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return BaseConstant.validatePromt;
+                }else if(value.length<15 || value.length>500){
+                  return BaseConstant.validatePromt;
+                }
+                return null;
+              },
               text: DaleeHomePageConstant.enterPrompt,
               onPressed: (value) {
                 if (fomrKey.currentState!.validate()) {
