@@ -24,4 +24,6 @@ class NetworkManager extends INetworkManager {
         await dio.post('', data: requestDataModel.toJson());
     return response;
   }
+
+
 }
