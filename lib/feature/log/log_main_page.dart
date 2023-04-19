@@ -1,15 +1,15 @@
 import 'package:chatgptapp/constant%20/constant.dart';
+import 'package:chatgptapp/feature/choose_model_page.dart';
 import 'package:chatgptapp/feature/log/chatgpt_log_page.dart';
 import 'package:chatgptapp/utils/helper/hepers.dart';
 import 'package:flutter/material.dart';
 
 class LogMainPage extends StatelessWidget {
   static go(context) {
-    Navigator.of(context).pushAndRemoveUntil(
+    Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const LogMainPage(),
       ),
-      (route) => false,
     );
   }
 
@@ -20,6 +20,12 @@ class LogMainPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              ChooseModelPage.go(context);
+            },
+            icon: const Icon(Icons.arrow_back),
+          ),
           title: const Text(LogConstant.logTitle),
         ),
         body: Column(
