@@ -9,6 +9,11 @@ class BaseConstant{
   static const chooseModel = 'Choose Model';
   static const chatgpt = 'ChatGPT';
   static const dalee = 'Dalee';
+  static const width = 'Width';
+  static const height = 'Height';
+  static const enterWidth = 'Not Empty';
+  static const enterHeight = 'Not Empty';
+  static const highValue = 'High Value';
 
   const BaseConstant._();
 }
