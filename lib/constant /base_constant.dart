@@ -4,6 +4,8 @@ class BaseConstant{
   static const user = 'user';
   static const hiveBoxName = 'chatCache';
   static const logBoxName = 'logCache';
+  static const saveDataForDAle = 'saveDAtaForDale';
+  static const logBoxNameForDale = 'logCacheForDalee';
   static const drawerHeader = 'Chat with AI';
   static const validateMessage = 'Please ask a valid question longer than 5 characters';
   static const chooseModel = 'Choose Model';

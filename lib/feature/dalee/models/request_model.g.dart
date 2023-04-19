@@ -21,19 +21,22 @@ class RequestModelForDaleeCreateImageAdapter
       prompt: fields[0] as String,
       n: fields[1] as int,
       size: fields[2] as String,
+      response_format: fields[3] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$_RequestModelForDaleeCreateImage obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.prompt)
       ..writeByte(1)
       ..write(obj.n)
       ..writeByte(2)
-      ..write(obj.size);
+      ..write(obj.size)
+      ..writeByte(3)
+      ..write(obj.response_format);
   }
 
   @override
@@ -57,6 +60,7 @@ _$_RequestModelForDaleeCreateImage _$$_RequestModelForDaleeCreateImageFromJson(
       prompt: json['prompt'] as String,
       n: json['n'] as int,
       size: json['size'] as String,
+      response_format: json['response_format'] as String,
     );
 
 Map<String, dynamic> _$$_RequestModelForDaleeCreateImageToJson(
@@ -65,4 +69,5 @@ Map<String, dynamic> _$$_RequestModelForDaleeCreateImageToJson(
       'prompt': instance.prompt,
       'n': instance.n,
       'size': instance.size,
+      'response_format': instance.response_format,
     };

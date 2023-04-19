@@ -12,7 +12,8 @@ class RequestModelForDaleeCreateImage with _$RequestModelForDaleeCreateImage {
   const factory RequestModelForDaleeCreateImage({
     @HiveField(0) required String prompt,
     @HiveField(1) required int n,
-    @HiveField(2) required String size
+    @HiveField(2) required String size,
+    @HiveField(3) required String response_format,
   }) = _RequestModelForDaleeCreateImage;
 
 

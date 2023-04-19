@@ -16,4 +16,19 @@ extension SizeExtensionForWidget on Widget {
       child: this,
     );
   }
+
+  Widget wHalf(context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width/2,
+      child: this,
+    );
+  }
+
+  Widget hHalf(context){
+    return SizedBox(
+      height: MediaQuery.of(context).size.height/2,
+      child: this,
+    );
+  }
+
 }

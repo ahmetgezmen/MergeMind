@@ -1,4 +1,5 @@
 import 'package:chatgptapp/constant%20/constant.dart';
+import 'package:chatgptapp/feature/dalee/provider/image_provider.dart';
 import 'package:chatgptapp/feature/dalee/widgets/custom_textfield_widget.dart';
 import 'package:chatgptapp/feature/dalee/widgets/loading_widget.dart';
 import 'package:chatgptapp/feature/dalee/widgets/row_half_seperate.dart';
@@ -6,8 +7,9 @@ import 'package:chatgptapp/feature/widgets/dropdown_button_widget.dart';
 import 'package:chatgptapp/utils/helper/hepers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class DHomePage extends StatefulWidget {
+class DHomePage extends ConsumerStatefulWidget {
   static void go(BuildContext context) {
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
@@ -19,11 +21,10 @@ class DHomePage extends StatefulWidget {
 
   const DHomePage({Key? key}) : super(key: key);
   @override
-  State<DHomePage> createState() => _DHomePageState();
+  ConsumerState<DHomePage> createState() => _DHomePageState();
 }
 
-class _DHomePageState extends State<DHomePage> {
-  bool isLoading = false;
+class _DHomePageState extends ConsumerState<DHomePage> {
   bool isComplexMode = false;
   int n = 2;
   int? height;
@@ -32,19 +33,24 @@ class _DHomePageState extends State<DHomePage> {
   changeN(int? value) {
     n = value ?? n;
   }
+  List<Uint8List> imageList = [];
 
-  sendRequest() {
+  sendRequest(String value) async {
+    final result = await ref.read(imageStateProvider.notifier).sendRequest(
+          prompt: value,
+          n: n,
+          height: height ?? ApiConstant.defaultHeight,
+          width: width ?? ApiConstant.defaultWidth,
+        );
     setState(() {
-      isLoading = true;
-    });
-    // todo actions here
-    setState(() {
-      isLoading = false;
+      imageList = result;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final imageProvider = ref.watch(imageStateProvider.notifier);
+    final isLoading = ref.watch(imageStateProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text(DaleeHomePageConstant.title),
@@ -57,11 +63,21 @@ class _DHomePageState extends State<DHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
+            if(imageList.isNotEmpty)
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    for (Uint8List item in imageList)
+                      Image.memory(item).p8H.wHalf(context),
+                  ],
+                ),
+              ),
             CustomTextFormFieldForDalee(
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return BaseConstant.validatePromt;
-                }else if(value.length<15 || value.length>500){
+                } else if (value.length < 15 || value.length > 500) {
                   return BaseConstant.validatePromt;
                 }
                 return null;
@@ -69,8 +85,7 @@ class _DHomePageState extends State<DHomePage> {
               text: DaleeHomePageConstant.enterPrompt,
               onPressed: (value) {
                 if (fomrKey.currentState!.validate()) {
-                  sendRequest();
-                  print("ok");
+                  sendRequest(value);
                 }
               },
               controller: TextEditingController(),
@@ -115,7 +130,7 @@ class _DHomePageState extends State<DHomePage> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return BaseConstant.enterWidth;
-                          }else if(int.parse(value)>5000){
+                          } else if (int.parse(value) > 5000) {
                             return BaseConstant.highValue;
                           }
                           return null;
@@ -135,7 +150,7 @@ class _DHomePageState extends State<DHomePage> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return BaseConstant.enterHeight;
-                          }else if(int.parse(value)>5000){
+                          } else if (int.parse(value) > 5000) {
                             return BaseConstant.highValue;
                           }
                           return null;

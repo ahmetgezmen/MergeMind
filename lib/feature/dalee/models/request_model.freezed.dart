@@ -27,6 +27,8 @@ mixin _$RequestModelForDaleeCreateImage {
   int get n => throw _privateConstructorUsedError;
   @HiveField(2)
   String get size => throw _privateConstructorUsedError;
+  @HiveField(3)
+  String get response_format => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +47,8 @@ abstract class $RequestModelForDaleeCreateImageCopyWith<$Res> {
   $Res call(
       {@HiveField(0) String prompt,
       @HiveField(1) int n,
-      @HiveField(2) String size});
+      @HiveField(2) String size,
+      @HiveField(3) String response_format});
 }
 
 /// @nodoc
@@ -65,6 +68,7 @@ class _$RequestModelForDaleeCreateImageCopyWithImpl<$Res,
     Object? prompt = null,
     Object? n = null,
     Object? size = null,
+    Object? response_format = null,
   }) {
     return _then(_value.copyWith(
       prompt: null == prompt
@@ -78,6 +82,10 @@ class _$RequestModelForDaleeCreateImageCopyWithImpl<$Res,
       size: null == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
+              as String,
+      response_format: null == response_format
+          ? _value.response_format
+          : response_format // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -95,7 +103,8 @@ abstract class _$$_RequestModelForDaleeCreateImageCopyWith<$Res>
   $Res call(
       {@HiveField(0) String prompt,
       @HiveField(1) int n,
-      @HiveField(2) String size});
+      @HiveField(2) String size,
+      @HiveField(3) String response_format});
 }
 
 /// @nodoc
@@ -114,6 +123,7 @@ class __$$_RequestModelForDaleeCreateImageCopyWithImpl<$Res>
     Object? prompt = null,
     Object? n = null,
     Object? size = null,
+    Object? response_format = null,
   }) {
     return _then(_$_RequestModelForDaleeCreateImage(
       prompt: null == prompt
@@ -127,6 +137,10 @@ class __$$_RequestModelForDaleeCreateImageCopyWithImpl<$Res>
       size: null == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
+              as String,
+      response_format: null == response_format
+          ? _value.response_format
+          : response_format // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -142,7 +156,8 @@ class _$_RequestModelForDaleeCreateImage
   const _$_RequestModelForDaleeCreateImage(
       {@HiveField(0) required this.prompt,
       @HiveField(1) required this.n,
-      @HiveField(2) required this.size});
+      @HiveField(2) required this.size,
+      @HiveField(3) required this.response_format});
 
   factory _$_RequestModelForDaleeCreateImage.fromJson(
           Map<String, dynamic> json) =>
@@ -157,10 +172,13 @@ class _$_RequestModelForDaleeCreateImage
   @override
   @HiveField(2)
   final String size;
+  @override
+  @HiveField(3)
+  final String response_format;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'RequestModelForDaleeCreateImage(prompt: $prompt, n: $n, size: $size)';
+    return 'RequestModelForDaleeCreateImage(prompt: $prompt, n: $n, size: $size, response_format: $response_format)';
   }
 
   @override
@@ -170,7 +188,8 @@ class _$_RequestModelForDaleeCreateImage
       ..add(DiagnosticsProperty('type', 'RequestModelForDaleeCreateImage'))
       ..add(DiagnosticsProperty('prompt', prompt))
       ..add(DiagnosticsProperty('n', n))
-      ..add(DiagnosticsProperty('size', size));
+      ..add(DiagnosticsProperty('size', size))
+      ..add(DiagnosticsProperty('response_format', response_format));
   }
 
   @override
@@ -180,12 +199,15 @@ class _$_RequestModelForDaleeCreateImage
             other is _$_RequestModelForDaleeCreateImage &&
             (identical(other.prompt, prompt) || other.prompt == prompt) &&
             (identical(other.n, n) || other.n == n) &&
-            (identical(other.size, size) || other.size == size));
+            (identical(other.size, size) || other.size == size) &&
+            (identical(other.response_format, response_format) ||
+                other.response_format == response_format));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, prompt, n, size);
+  int get hashCode =>
+      Object.hash(runtimeType, prompt, n, size, response_format);
 
   @JsonKey(ignore: true)
   @override
@@ -208,7 +230,8 @@ abstract class _RequestModelForDaleeCreateImage
   const factory _RequestModelForDaleeCreateImage(
           {@HiveField(0) required final String prompt,
           @HiveField(1) required final int n,
-          @HiveField(2) required final String size}) =
+          @HiveField(2) required final String size,
+          @HiveField(3) required final String response_format}) =
       _$_RequestModelForDaleeCreateImage;
 
   factory _RequestModelForDaleeCreateImage.fromJson(Map<String, dynamic> json) =
@@ -223,6 +246,9 @@ abstract class _RequestModelForDaleeCreateImage
   @override
   @HiveField(2)
   String get size;
+  @override
+  @HiveField(3)
+  String get response_format;
   @override
   @JsonKey(ignore: true)
   _$$_RequestModelForDaleeCreateImageCopyWith<
