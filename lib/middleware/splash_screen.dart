@@ -2,6 +2,7 @@ import 'package:chatgptapp/feature/chatgpt/provider/chat_provider.dart';
 import 'package:chatgptapp/feature/chatgpt/provider/log_provider.dart';
 import 'package:chatgptapp/feature/chatgpt/widgets/loading_widget.dart';
 import 'package:chatgptapp/feature/choose_model_page.dart';
+import 'package:chatgptapp/feature/dalee/provider/log_provider.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -19,7 +20,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     // todo : app initializing
     await Future.delayed(Duration.zero);
     await ref.read(chatProvider).fetch();
-    ref.read(logProvider).fetch();
+    await ref.read(logProvider).fetch();
+    await ref.read(logModelForDAleeProvider).fetch();
     setState(() {
       isInitialized = true;
     });

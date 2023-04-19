@@ -6,16 +6,18 @@ import 'package:chatgptapp/feature/dalee/models/request_model.dart';
 import 'package:chatgptapp/feature/dalee/models/response_model.dart';
 import 'package:chatgptapp/feature/dalee/models/save_data_model.dart';
 import 'package:chatgptapp/feature/dalee/services/network_manager.dart';
+import 'package:chatgptapp/feature/dalee/viewmodel/log_viewmodel.dart';
 import 'package:chatgptapp/utils/helper/base64_adapter.dart';
 import 'package:dio/src/response.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ImageViewModel extends StateNotifier<bool> {
-  ImageViewModel(String apiKey) : super(false) {
+  ImageViewModel(String apiKey, LogViewModelForDalee logViewModelForDale ) : super(false) {
     networkManager = NetworkManagerForDalee(apiKey);
+    logViewModelForDalee= logViewModelForDale;
   }
 
-
+  late LogViewModelForDalee logViewModelForDalee;
   late NetworkManagerForDalee networkManager;
 
   Future<List<Uint8List>> sendRequest({
@@ -50,6 +52,8 @@ class ImageViewModel extends StateNotifier<bool> {
       statusMessage: response.statusMessage,
     );
 
+    final dateTime = DateTime.now().millisecondsSinceEpoch.toString();
+    logViewModelForDalee.put(dateTime, logModel);
 
     // todo cache logModel
     List<Uint8List> images = [];

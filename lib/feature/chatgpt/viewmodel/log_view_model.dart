@@ -18,7 +18,7 @@ class LogViewModel extends ChangeNotifier{
   }
 
   put(String key, LogModel logModel) async {
-    _logCacheManager.put(key, logModel);
+    await _logCacheManager.put(key, logModel);
     _logList = _logCacheManager.getAll();
     notifyListeners();
   }

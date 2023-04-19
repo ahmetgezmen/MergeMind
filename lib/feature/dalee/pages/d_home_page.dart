@@ -1,4 +1,5 @@
 import 'package:chatgptapp/constant%20/constant.dart';
+import 'package:chatgptapp/feature/choose_model_page.dart';
 import 'package:chatgptapp/feature/dalee/provider/image_provider.dart';
 import 'package:chatgptapp/feature/dalee/widgets/custom_textfield_widget.dart';
 import 'package:chatgptapp/feature/dalee/widgets/loading_widget.dart';
@@ -53,6 +54,12 @@ class _DHomePageState extends ConsumerState<DHomePage> {
     final isLoading = ref.watch(imageStateProvider);
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+          ChooseModelPage.go(context);
+            },
+        ),
         title: const Text(DaleeHomePageConstant.title),
         actions: [if (isLoading) const LoadingWidget()],
       ),
