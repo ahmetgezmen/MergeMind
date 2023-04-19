@@ -1,7 +1,7 @@
 import 'package:chatgptapp/constant%20/constant.dart';
 import 'package:chatgptapp/feature/chatgpt/models/log_model.dart';
 import 'package:chatgptapp/feature/chatgpt/provider/log_provider.dart';
-import 'package:chatgptapp/feature/log/log_info_page.dart';
+import 'package:chatgptapp/feature/log/chatgpt/log_info_page.dart';
 import 'package:chatgptapp/feature/log/log_main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

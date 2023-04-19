@@ -2,7 +2,7 @@ import 'package:chatgptapp/constant%20/constant.dart';
 import 'package:chatgptapp/feature/chatgpt/models/choice_model.dart';
 import 'package:chatgptapp/feature/chatgpt/models/log_model.dart';
 import 'package:chatgptapp/feature/chatgpt/models/message_model.dart';
-import 'package:chatgptapp/feature/log/line_widget.dart';
+import 'package:chatgptapp/feature/log/widgets/line_widget.dart';
 import 'package:chatgptapp/utils/helper/hepers.dart';
 import 'package:flutter/material.dart';
 

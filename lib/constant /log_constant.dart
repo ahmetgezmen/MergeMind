@@ -1,6 +1,7 @@
 class LogConstant{
   static const String logTitle = 'Logs';
   static const String chatgptlogs = 'Chat GPT Logs';
+  static const String daleelogs = 'Dalee Logs';
   static const String statusCode= 'Status Code';
   static const String statusMessage= 'Status Message';
   static const String requestMessages= 'Request Messages';

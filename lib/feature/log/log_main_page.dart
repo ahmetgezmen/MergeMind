@@ -1,6 +1,7 @@
 import 'package:chatgptapp/constant%20/constant.dart';
 import 'package:chatgptapp/feature/choose_model_page.dart';
-import 'package:chatgptapp/feature/log/chatgpt_log_page.dart';
+import 'package:chatgptapp/feature/log/chatgpt/chatgpt_log_page.dart';
+import 'package:chatgptapp/feature/log/dalee/dalee_log_page.dart';
 import 'package:chatgptapp/utils/helper/hepers.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,13 @@ class LogMainPage extends StatelessWidget {
                 ChatGPTLogPage.go(context);
               },
               child: const Text(LogConstant.chatgptlogs),
-            ).wInf.p32H
+            ).wInf.p32H,
+            ElevatedButton(
+              onPressed: () {
+                DaleeLogPage.go(context);
+              },
+              child: const Text(LogConstant.daleelogs),
+            ).wInf.p32H,
           ],
         ).wInf,
       ),
