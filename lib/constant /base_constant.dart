@@ -1,6 +1,6 @@
 class BaseConstant{
 
-  static const appTitle = 'My AI APP';
+  static const appTitle = 'MergeMind';
   static const user = 'user';
   static const hiveBoxName = 'chatCache';
   static const logBoxName = 'logCache';
