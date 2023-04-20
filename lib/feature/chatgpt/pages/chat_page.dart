@@ -10,13 +10,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ChatPage extends ConsumerStatefulWidget {
   static go(BuildContext context, String title) {
-    Navigator.of(context).pushAndRemoveUntil(
+    Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ChatPage(
           title: title,
         ),
       ),
-      (route) => false,
     );
   }
 

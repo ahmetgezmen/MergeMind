@@ -8,12 +8,11 @@ import 'package:chatgptapp/utils/helper/hepers.dart';
 
 class LogInfoForDalee extends StatefulWidget {
   static go(context, LogModelForDalee logModelForDalee) {
-    Navigator.of(context).pushAndRemoveUntil(
+    Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) =>
             LogInfoForDalee(logModelForDalee: logModelForDalee),
       ),
-      (route) => false,
     );
   }
 

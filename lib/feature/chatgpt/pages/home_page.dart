@@ -9,11 +9,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   static void go(BuildContext context) {
-    Navigator.of(context).pushAndRemoveUntil(
+    Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const HomePage(),
       ),
-      (route) => false,
     );
   }
 

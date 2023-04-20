@@ -8,11 +8,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ChatGPTLogPage extends ConsumerWidget {
   static go(context) {
-    Navigator.of(context).pushAndRemoveUntil(
+    Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const ChatGPTLogPage(),
       ),
-      (route) => false,
     );
   }
 

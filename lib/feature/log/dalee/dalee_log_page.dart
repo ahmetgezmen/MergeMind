@@ -9,11 +9,10 @@ class DaleeLogPage extends ConsumerWidget {
   const DaleeLogPage({super.key});
 
   static void go(BuildContext context) {
-    Navigator.of(context).pushAndRemoveUntil(
+    Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const DaleeLogPage(),
       ),
-      (route) => false,
     );
   }
 

@@ -7,11 +7,10 @@ import 'package:flutter/material.dart';
 
 class ChooseModelPage extends StatelessWidget {
   static go(context){
-    Navigator.of(context).pushAndRemoveUntil(
+    Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const ChooseModelPage(),
       ),
-          (route) => false,
     );
   }
   const ChooseModelPage({Key? key}) : super(key: key);
