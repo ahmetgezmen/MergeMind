@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:chatgptapp/constant%20/constant.dart';
 import 'package:chatgptapp/feature/dalee/models/log_model.dart';
 import 'package:chatgptapp/feature/dalee/models/response_model.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class LogInfoForDalee extends StatefulWidget {
 class _LogInfoForDaleeState extends State<LogInfoForDalee>
     with TickerProviderStateMixin {
   int initialPage = 0;
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   bool isGaleryMode = false;
 
@@ -37,7 +38,7 @@ class _LogInfoForDaleeState extends State<LogInfoForDalee>
         widget.logModelForDalee.responseModelForDalee.data;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Log Info'),
+        title: Text(widget.logModelForDalee.requestModelForDaleeCreateImage.prompt),
         actions: [
           Switch(
             value: isGaleryMode,
