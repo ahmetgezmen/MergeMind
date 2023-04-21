@@ -19,11 +19,10 @@ class DIO {
     dio.options.connectTimeout = Durations.networkTimeout.duration;
 
     dio.options.receiveTimeout = Durations.networkTimeout.duration;
-    
+
     dio.options.headers = {
       HttpHeaders.contentTypeHeader: 'application/json',
     };
-    
   }
 
   Future<Response> get(
@@ -40,9 +39,21 @@ class DIO {
     String url, {
     Object? data,
   }) async {
-    return await dio.post(
-      url,
-      data: data,
-    );
+    late final Response response ;
+    try {
+       response = await dio.post(
+        url,
+        data: data,
+      );
+    } catch (e) {
+      final int statusCode = int.parse(e.toString().split(" ").last.substring(0, 3));
+      response = Response(
+        requestOptions: RequestOptions(path: url),
+        statusMessage: e.toString(),
+        statusCode: statusCode,
+      );
+    }
+
+    return response;
   }
 }

@@ -5,10 +5,19 @@ import 'package:chatgptapp/feature/chatgpt/provider/log_provider.dart';
 import 'package:chatgptapp/feature/chatgpt/widgets/loading_widget.dart';
 import 'package:chatgptapp/feature/choose_model_page.dart';
 import 'package:chatgptapp/feature/dalee/provider/log_provider.dart';
+import 'package:chatgptapp/feature/provider/api_key_provider.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
+  static go(context){
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SplashScreen(),
+      ),
+    );
+  }
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
@@ -27,6 +36,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     await ref.read(logModelForDAleeProvider).fetch();
     if (apiKey != null) {
       isApiKey = true;
+      ref.read(apiKeyStateProvider.notifier).setApiKey(apiKey);
     }
 
     isInitialized = true;

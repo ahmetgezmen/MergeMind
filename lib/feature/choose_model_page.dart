@@ -1,18 +1,21 @@
 import 'package:chatgptapp/constant%20/constant.dart';
+import 'package:chatgptapp/feature/api/api_key_services.dart';
 import 'package:chatgptapp/feature/chatgpt/pages/home_page.dart';
 import 'package:chatgptapp/feature/dalee/pages/d_home_page.dart';
 import 'package:chatgptapp/feature/log/log_main_page.dart';
+import 'package:chatgptapp/middleware/splash_screen.dart';
 import 'package:chatgptapp/utils/helper/hepers.dart';
 import 'package:flutter/material.dart';
 
 class ChooseModelPage extends StatelessWidget {
-  static go(context){
+  static go(context) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const ChooseModelPage(),
       ),
     );
   }
+
   const ChooseModelPage({Key? key}) : super(key: key);
 
   @override
@@ -22,12 +25,23 @@ class ChooseModelPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text(BaseConstant.chooseModel),
           actions: [
-            IconButton(onPressed: () {
-              LogMainPage.go(context);
-            }, icon: const Icon(Icons.insert_chart))
+            IconButton(
+              onPressed: () async {
+                await ApiKeyServices.remove();
+                if (context.mounted) {
+                  SplashScreen.go(context);
+                }
+              },
+              icon: const Icon(Icons.person_remove),
+            ),
+            IconButton(
+                onPressed: () {
+                  LogMainPage.go(context);
+                },
+                icon: const Icon(Icons.insert_chart))
           ],
         ),
-        body:  SizedBox(
+        body: SizedBox(
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

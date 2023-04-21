@@ -6,5 +6,5 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final imageStateProvider = StateNotifierProvider<ImageViewModel, bool>((ref) {
   final LogViewModelForDalee logProviderForDale = ref.watch(logModelForDAleeProvider);
-  return ImageViewModel(ref.read(apiKeyProvider), logProviderForDale );
+  return ImageViewModel(ref.read(apiKeyStateProvider), logProviderForDale );
 });

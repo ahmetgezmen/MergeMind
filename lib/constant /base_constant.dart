@@ -20,5 +20,9 @@ class BaseConstant{
   static const highValue = 'High Value';
   static const validatePromt = 'Please enter value. Value bigger than 15 and less than 500';
   static const enterApiKey = 'Enter API Key';
+  static const send = 'Test and Send';
+  static const testContent = 'This is test Message can you see this';
+  static const testing = 'Testing';
+  static const testFaild = 'Test Faild';
   const BaseConstant._();
 }
