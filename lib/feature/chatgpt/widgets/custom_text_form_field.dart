@@ -19,7 +19,6 @@ class CustomTextFormField extends StatelessWidget {
           return null;
         },
         onFieldSubmitted: (value) {
-
           if(formKey.currentState!.validate()) {
             onPressed?.call(value);
           }

@@ -28,43 +28,67 @@ class ChatPage extends ConsumerStatefulWidget {
 }
 
 class _ChatPageState extends ConsumerState<ChatPage> {
-
   bool isLoading = false;
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height * 0.07;
     final Choices? choices = ref.watch(chatProvider).chats[widget.title];
-    return choices != null ?  SafeArea(
-      child: Scaffold(
-        drawer: const CustomDrawer(),
-        appBar: appBar(title: widget.title, isLoading: isLoading),
-        body: ListView.builder(
-          reverse: true,
-          itemCount: choices.list.length,
-          itemBuilder: (context, index) {
-            final int reverseIndex = choices.list.length - index - 1;
-            bool isAssistant =
-                choices.list[reverseIndex].message.role != BaseConstant.user;
-            return CustomCardWidget(
-              isAssistant: isAssistant,
-              content: choices.list[reverseIndex].message.content,
-            );
-          },
-        ),
-        bottomNavigationBar: !isLoading ? CustomTextFormField(
-          onPressed: (value) async {
-            setState(() {
-              isLoading = true;
-            });
-            await ref.read(chatProvider).sendRequestForCurrentChat(content: value, key: widget.title, ref: ref);
-            setState(() {
-              isLoading = false;
-            });
-          },
-          formKey: GlobalKey<FormState>(),
-          controller: TextEditingController(),
-        ) : null,
-      ),
-    ):const SizedBox() ;
+    return choices != null
+        ? SafeArea(
+            child: Scaffold(
+              drawer: const CustomDrawer(),
+              appBar: appBar(title: widget.title, isLoading: isLoading),
+              body: Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      reverse: true,
+                      itemCount: choices.list.length,
+                      itemBuilder: (context, index) {
+                        final int reverseIndex =
+                            choices.list.length - index - 1;
+                        bool isAssistant =
+                            choices.list[reverseIndex].message.role !=
+                                BaseConstant.user;
+                        return CustomCardWidget(
+                          isAssistant: isAssistant,
+                          content: choices.list[reverseIndex].message.content,
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: height,
+                  ),
+                ],
+              ),
+              bottomSheet: !isLoading
+                  ? SizedBox(
+                      height: height,
+                      child: CustomTextFormField(
+                        onPressed: (value) async {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          await ref
+                              .read(chatProvider)
+                              .sendRequestForCurrentChat(
+                                  content: value, key: widget.title, ref: ref);
+                          setState(() {
+                            isLoading = false;
+                          });
+                        },
+                        formKey: formKey,
+                        controller: controller,
+                      ),
+                    )
+                  : null,
+            ),
+          )
+        : const SizedBox();
   }
 }

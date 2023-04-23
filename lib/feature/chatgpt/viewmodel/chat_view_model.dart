@@ -79,7 +79,9 @@ class ChatsViewModel extends ChangeNotifier {
   }
 
   Future<Object> sendRequestForCurrentChat(
-      {required String content, required String key, required WidgetRef ref}) async {
+      {required String content,
+      required String key,
+      required WidgetRef ref}) async {
     final logCacheProvider = ref.read(logProvider);
     final Message sendingMessage = Message(
       content: content,
@@ -102,7 +104,7 @@ class ChatsViewModel extends ChangeNotifier {
     );
 
     final String dateTimeMillisecondEpoch =
-    DateTime.now().millisecondsSinceEpoch.toString();
+        DateTime.now().millisecondsSinceEpoch.toString();
     late LogModel logModel;
     final response = await networkManager.post(requestDataModel: rModel);
     if (response.statusCode == HttpStatus.ok) {

@@ -24,5 +24,9 @@ class BaseConstant{
   static const testContent = 'This is test Message can you see this';
   static const testing = 'Testing';
   static const testFaild = 'Test Faild';
+  static const removeKey = 'Remove Key';
+  static const removeKeyBody = 'Are you sure you want to remove your API Key?';
+  static const yes = 'Yes';
+  static const no = 'No';
   const BaseConstant._();
 }

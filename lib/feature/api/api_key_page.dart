@@ -58,9 +58,16 @@ class EnterApiKey extends StatelessWidget {
                     }
 
                   });
-                  return const AlertDialog(
-                    title:  Text(BaseConstant.testing),
-                    content: CircularProgressIndicator(),
+                  return  AlertDialog(
+                    title: const  Text(BaseConstant.testing),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        CircularProgressIndicator(),
+                      ],
+                    ),
                   );
                 },
               );

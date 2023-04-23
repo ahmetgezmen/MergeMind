@@ -1,13 +1,15 @@
 import 'package:chatgptapp/constant%20/constant.dart';
 import 'package:chatgptapp/feature/api/api_key_services.dart';
 import 'package:chatgptapp/feature/chatgpt/pages/home_page.dart';
+import 'package:chatgptapp/feature/chatgpt/provider/chat_provider.dart';
 import 'package:chatgptapp/feature/dalee/pages/d_home_page.dart';
 import 'package:chatgptapp/feature/log/log_main_page.dart';
 import 'package:chatgptapp/middleware/splash_screen.dart';
 import 'package:chatgptapp/utils/helper/hepers.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ChooseModelPage extends StatelessWidget {
+class ChooseModelPage extends ConsumerWidget {
   static go(context) {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -19,7 +21,7 @@ class ChooseModelPage extends StatelessWidget {
   const ChooseModelPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -27,10 +29,33 @@ class ChooseModelPage extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () async {
-                await ApiKeyServices.remove();
-                if (context.mounted) {
-                  SplashScreen.go(context);
-                }
+                showDialog<void>(
+                  context: context,
+                  builder: (BuildContext dialogContext) {
+                    return AlertDialog(
+                      title: const Text(BaseConstant.removeKey),
+                      content: const Text(BaseConstant.removeKeyBody),
+                      actions: <Widget>[
+                        TextButton(
+                          child: const Text(BaseConstant.no),
+                          onPressed: () {
+                            Navigator.of(dialogContext)
+                                .pop(); // Dismiss alert dialog
+                          },
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {
+                            await ApiKeyServices.remove();
+                            if (context.mounted) {
+                              SplashScreen.go(context);
+                            }
+                          },
+                          child: const Text(BaseConstant.yes),
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
               icon: const Icon(Icons.person_remove),
             ),
@@ -52,6 +77,9 @@ class ChooseModelPage extends StatelessWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
+                  ref
+                      .read(chatProvider)
+                      .changeOpeningChat(HomePageConstant.title);
                   HomePage.go(context);
                 },
                 child: const Text(BaseConstant.chatgpt),

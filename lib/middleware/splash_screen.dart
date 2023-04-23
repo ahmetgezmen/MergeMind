@@ -29,15 +29,16 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   bool isApiKey = false;
   appInitializing() async {
     // todo : app initializing
-    final apiKey = await ApiKeyServices.getApiKey();
     await Future.delayed(Duration.zero);
-    await ref.read(chatProvider).fetch();
-    await ref.read(logProvider).fetch();
+
     await ref.read(logModelForDAleeProvider).fetch();
+    final apiKey = await ApiKeyServices.getApiKey();
     if (apiKey != null) {
       isApiKey = true;
       ref.read(apiKeyStateProvider.notifier).setApiKey(apiKey);
     }
+    await ref.read(chatProvider).fetch();
+    await ref.read(logProvider).fetch();
 
     isInitialized = true;
     setState(() {
