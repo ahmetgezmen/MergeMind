@@ -7,6 +7,5 @@ class ApiConstant{
   static const int defaultHeight = 1024;
   static const int defaultWidth = 1024;
   static const String responseFormat = 'b64_json';
-
   const ApiConstant._();
 }

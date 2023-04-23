@@ -29,7 +29,7 @@ class ChatsViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<Object> sendNewRequestForNewChat(String content, WidgetRef ref) async {
+  Future<String> sendNewRequestForNewChat(String content, WidgetRef ref) async {
     final logCacheProvider = ref.read(logProvider);
     final Message sendingMessage = Message(
       content: content,
@@ -74,11 +74,11 @@ class ChatsViewModel extends ChangeNotifier {
       );
       logCacheProvider.put(dateTimeMillisecondEpoch, logModel);
       notifyListeners();
-      return false;
+      return response.statusMessage.toString();
     }
   }
 
-  Future<Object> sendRequestForCurrentChat(
+  Future<String> sendRequestForCurrentChat(
       {required String content,
       required String key,
       required WidgetRef ref}) async {
@@ -136,7 +136,7 @@ class ChatsViewModel extends ChangeNotifier {
       );
       logCacheProvider.put(dateTimeMillisecondEpoch, logModel);
       notifyListeners();
-      return false;
+      return response.statusMessage.toString();
     }
   }
 

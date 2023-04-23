@@ -28,5 +28,6 @@ class BaseConstant{
   static const removeKeyBody = 'Are you sure you want to remove your API Key?';
   static const yes = 'Yes';
   static const no = 'No';
+
   const BaseConstant._();
 }

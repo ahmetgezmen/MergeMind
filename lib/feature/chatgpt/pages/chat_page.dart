@@ -74,10 +74,19 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                           setState(() {
                             isLoading = true;
                           });
-                          await ref
+                          final result = await ref
                               .read(chatProvider)
                               .sendRequestForCurrentChat(
                                   content: value, key: widget.title, ref: ref);
+                          if (int.tryParse(result) == null) {
+                            if(context.mounted){
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(result),
+                                ),
+                              );
+                            }
+                          }
                           setState(() {
                             isLoading = false;
                           });

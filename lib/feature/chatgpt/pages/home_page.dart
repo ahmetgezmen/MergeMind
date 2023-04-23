@@ -42,7 +42,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             setState(() {
               isLoading = true;
             });
-            final result =
+            final String result =
                 await ref.read(chatProvider).sendNewRequestForNewChat(
                       value,
                   ref,
@@ -50,10 +50,18 @@ class _HomePageState extends ConsumerState<HomePage> {
             setState(() {
               isLoading = false;
             });
-            if (result != false) {
+            if (int.tryParse(result) != null) {
               if (context.mounted) {
                 ChatPage.go(context, result.toString());
               }
+            }else{
+             if(context.mounted){
+               ScaffoldMessenger.of(context).showSnackBar(
+                 SnackBar(
+                   content: Text('Error: $result'),
+                 ),
+               );
+             }
             }
           },
           formKey: GlobalKey<FormState>(),
