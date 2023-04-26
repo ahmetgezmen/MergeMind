@@ -3,6 +3,7 @@ import 'package:chatgptapp/feature/dalee/models/log_model.dart';
 import 'package:chatgptapp/feature/dalee/models/request_model.dart';
 import 'package:chatgptapp/feature/dalee/models/response_model.dart';
 import 'package:chatgptapp/feature/dalee/models/save_data_model.dart';
+import 'package:chatgptapp/feature/models/app_settings_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void adapters(){
@@ -18,4 +19,5 @@ void adapters(){
   Hive.registerAdapter(LogModelForDaleeAdapter());
   Hive.registerAdapter(SaveDAtaModelForDaleeAdapter());
   Hive.registerAdapter(RequestModelForDaleeCreateImageAdapter());
+  Hive.registerAdapter(AppSettingsModelAdapter());
 }

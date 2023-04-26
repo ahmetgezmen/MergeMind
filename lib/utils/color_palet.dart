@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ColorPalet {
-  static const MaterialColor font =
+  static const MaterialColor backcolor =
       MaterialColor(0xfffcfacc, <int, Color>{100: Color(0xfffcfacc)});
   static const MaterialColor primer =
       MaterialColor(0xfff2b99e, <int, Color>{100: Color(0xfff2b99e)});

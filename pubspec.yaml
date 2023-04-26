@@ -1,6 +1,6 @@
 name: chatgptapp
 description: Artificial intelligence tools app.
-publish_to: 'Ahmet GEZMEN' # Remove this line if you wish to publish to pub.dev
+# publish_to: 'Ahmet GEZMEN' # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43

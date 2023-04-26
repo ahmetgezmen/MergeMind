@@ -41,7 +41,7 @@ abstract class ICacheManager<T> {
     await _box.deleteAll(_box.keys);
   }
 
-  contains(String key)=> _box.containsKey(key);
+  bool contains(String key)=> _box.containsKey(key);
 
   Future<void> close() async {
     await _box.close();

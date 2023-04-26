@@ -4,7 +4,10 @@ import 'package:chatgptapp/feature/chatgpt/pages/home_page.dart';
 import 'package:chatgptapp/feature/chatgpt/provider/chat_provider.dart';
 import 'package:chatgptapp/feature/dalee/pages/d_home_page.dart';
 import 'package:chatgptapp/feature/log/log_main_page.dart';
+import 'package:chatgptapp/feature/provider/app_settings_providers.dart';
+import 'package:chatgptapp/feature/widgets/dropdown_button_widget.dart';
 import 'package:chatgptapp/middleware/splash_screen.dart';
+import 'package:chatgptapp/utils/extension/strings.dart';
 import 'package:chatgptapp/utils/helper/hepers.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -27,6 +30,54 @@ class ChooseModelPage extends ConsumerWidget {
         appBar: AppBar(
           title: const Text(BaseConstant.chooseModel),
           actions: [
+            IconButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text(BaseConstant.settings),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Divider(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(BaseConstant.themeMode),
+                                DropdownButtonWidget<String>(
+                                  value: ref
+                                      .watch(appSettingChangeNotifierProvider)
+                                      .appSettingsModel
+                                      .themeMode
+                                      .toString()
+                                      .split('.')
+                                      .last
+                                      .capitalize,
+                                  items: BaseConstant.themeModeList.map((e) {
+                                    return DropdownMenuItem<String>(
+                                      value: e,
+                                      child: Text(e),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? value) {
+                                    if(value == null) return;
+                                    ref
+                                        .read(appSettingChangeNotifierProvider)
+                                        .changeThemeMode(value);
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+                icon: const Icon(Icons.settings)),
             IconButton(
               onPressed: () async {
                 showDialog<void>(

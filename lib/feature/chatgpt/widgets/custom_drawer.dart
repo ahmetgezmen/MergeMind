@@ -3,6 +3,7 @@ import 'package:chatgptapp/feature/chatgpt/models/models.dart';
 import 'package:chatgptapp/feature/chatgpt/provider/chat_provider.dart';
 import 'package:chatgptapp/feature/chatgpt/widgets/drawer_item.dart';
 import 'package:chatgptapp/feature/choose_model_page.dart';
+import 'package:chatgptapp/utils/color_palet.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -20,10 +21,6 @@ class CustomDrawer extends ConsumerWidget {
         itemBuilder: (context, index) {
           if(index == 0 ){
             return DrawerHeader(
-
-              decoration: const BoxDecoration(
-                color: Colors.blue,
-              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

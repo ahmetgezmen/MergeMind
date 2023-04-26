@@ -10,5 +10,9 @@ Future<void> appInitializing() async {
   final document = await getApplicationDocumentsDirectory();
   await Hive.initFlutter(document.path);
   adapters();
-  runApp(const ProviderScope(child: App()));
+  runApp(
+    const ProviderScope(
+      child: App(),
+    ),
+  );
 }
