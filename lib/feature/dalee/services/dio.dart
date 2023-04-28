@@ -36,13 +36,26 @@ class DIOForDalee {
     );
   }
 
+
   Future<Response> post(
-    String url, {
-    Object? data,
-  }) async {
-    return await dio.post(
-      url,
-      data: data,
-    );
+      String url, {
+        Object? data,
+      }) async {
+    late final Response response ;
+    try {
+      response = await dio.post(
+        url,
+        data: data,
+      );
+    } catch (e) {
+      final int statusCode = int.parse(e.toString().split(" ").last.substring(0, 3));
+      response = Response(
+        requestOptions: RequestOptions(path: url),
+        statusMessage: e.toString(),
+        statusCode: statusCode,
+      );
+    }
+
+    return response;
   }
 }
