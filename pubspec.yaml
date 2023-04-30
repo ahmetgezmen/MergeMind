@@ -1,6 +1,6 @@
 name: chatgptapp
 description: Artificial intelligence tools app.
-# publish_to: 'Ahmet GEZMEN' # Remove this line if you wish to publish to pub.dev
+publish_to: 'Ahmet GEZMEN' # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -14,7 +14,7 @@ description: Artificial intelligence tools app.
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 1.0.0
 
 environment:
   sdk: '>=2.19.6 <3.0.0'

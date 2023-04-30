@@ -4,6 +4,7 @@ import 'package:chatgptapp/feature/dalee/provider/image_provider.dart';
 import 'package:chatgptapp/feature/dalee/widgets/custom_textfield_widget.dart';
 import 'package:chatgptapp/feature/dalee/widgets/loading_widget.dart';
 import 'package:chatgptapp/feature/dalee/widgets/row_half_seperate.dart';
+import 'package:chatgptapp/feature/models/either_model.dart';
 import 'package:chatgptapp/feature/widgets/dropdown_button_widget.dart';
 import 'package:chatgptapp/utils/helper/hepers.dart';
 import 'package:flutter/material.dart';
@@ -33,31 +34,42 @@ class _DHomePageState extends ConsumerState<DHomePage> {
   changeN(int? value) {
     n = value ?? n;
   }
+
   List<Uint8List> imageList = [];
 
   sendRequest(String value) async {
-    final result = await ref.read(imageStateProvider.notifier).sendRequest(
-          prompt: value,
-          n: n,
-          height: height ?? ApiConstant.defaultHeight,
-          width: width ?? ApiConstant.defaultWidth,
+    final EitherModel<List<Uint8List>, String> result =
+        await ref.read(imageStateProvider.notifier).sendRequest(
+              prompt: value,
+              n: n,
+              height: height ?? ApiConstant.defaultHeight,
+              width: width ?? ApiConstant.defaultWidth,
+            );
+    if (result.isLeft()) {
+      setState(() {
+        imageList = result.left!;
+      });
+    } else {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(result.right!),
+          ),
         );
-    setState(() {
-      imageList = result;
-    });
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final imageProvider = ref.watch(imageStateProvider.notifier);
     final isLoading = ref.watch(imageStateProvider);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-          ChooseModelPage.go(context);
-            },
+            ChooseModelPage.go(context);
+          },
         ),
         title: const Text(DaleeHomePageConstant.title),
         actions: [if (isLoading) const LoadingWidget()],
@@ -69,7 +81,7 @@ class _DHomePageState extends ConsumerState<DHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
-            if(imageList.isNotEmpty)
+            if (imageList.isNotEmpty)
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
