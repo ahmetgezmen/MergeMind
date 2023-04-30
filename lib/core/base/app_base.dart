@@ -32,6 +32,7 @@ class _AppState extends ConsumerState<App> {
   @override
   Widget build(BuildContext context) {
     return isInitialized ? MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: BaseConstant.appTitle,
       themeMode: ref.watch(appSettingChangeNotifierProvider).getThemeMode(),
       theme: AppTheme.themeLight,
